@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polar_pi 1.001\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-12 17:27+0100\n"
+"POT-Creation-Date: 2015-02-14 16:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -168,7 +168,7 @@ msgstr ""
 msgid "NM"
 msgstr ""
 
-#: src/Options.cpp:147 src/Options.cpp:156 src/Polar.cpp:1475
+#: src/Options.cpp:147 src/Options.cpp:156 src/Polar.cpp:1466
 msgid "kts"
 msgstr ""
 
@@ -244,6 +244,10 @@ msgstr ""
 msgid "Please wait."
 msgstr ""
 
+#: src/Polar.cpp:215
+msgid "Loading NMEA messages from file "
+msgstr ""
+
 #: src/Polar.cpp:314
 msgid "less than 3 entries found"
 msgstr ""
@@ -264,27 +268,27 @@ msgstr ""
 msgid "Collecting: "
 msgstr ""
 
-#: src/Polar.cpp:831
+#: src/Polar.cpp:822
 msgid "Save Polar File"
 msgstr ""
 
-#: src/Polar.cpp:1046
+#: src/Polar.cpp:1037
 msgid "Select a Polar-File"
 msgstr ""
 
-#: src/Polar.cpp:1320
+#: src/Polar.cpp:1311
 msgid "Use Max-Speed only"
 msgstr ""
 
-#: src/Polar.cpp:1327
+#: src/Polar.cpp:1318
 msgid "Use Average from all speed-data"
 msgstr ""
 
-#: src/Polar.cpp:1333
+#: src/Polar.cpp:1324
 msgid "Range from maximum speed to minus"
 msgstr ""
 
-#: src/Polar.cpp:1334
+#: src/Polar.cpp:1325
 msgid ""
 "Example:\n"
 "Max-Speed = 2,5 kts\n"
@@ -292,40 +296,40 @@ msgid ""
 "Range from 2,25 to 2,5 kts"
 msgstr ""
 
-#: src/Polar.cpp:1351
+#: src/Polar.cpp:1342
 msgid "Range"
 msgstr ""
 
-#: src/Polar.cpp:1373
+#: src/Polar.cpp:1364
 msgid "Sails"
 msgstr ""
 
-#: src/Polar.cpp:1384
+#: src/Polar.cpp:1375
 msgid "MyLabel"
 msgstr ""
 
-#: src/Polar.cpp:1398
+#: src/Polar.cpp:1389
 msgid "Wavehight"
 msgstr ""
 
-#: src/Polar.cpp:1467 src/PolarGui.cpp:87
+#: src/Polar.cpp:1458 src/PolarGui.cpp:87
 msgid "Wind:"
 msgstr ""
 
-#: src/Polar.cpp:1482
+#: src/Polar.cpp:1473
 msgid "Wavehight from"
 msgstr ""
 
-#: src/Polar.cpp:1487 src/Polar.cpp:1500 src/PolarGui.cpp:91
+#: src/Polar.cpp:1478 src/Polar.cpp:1491 src/PolarGui.cpp:91
 #: src/PolarGui.cpp:118
 msgid "any"
 msgstr ""
 
-#: src/Polar.cpp:1495
+#: src/Polar.cpp:1486
 msgid "to"
 msgstr ""
 
-#: src/Polar.cpp:1560
+#: src/Polar.cpp:1551
 msgid "Collecting Data from: "
 msgstr ""
 

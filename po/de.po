@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Polar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-12 17:27+0100\n"
+"POT-Creation-Date: 2015-02-14 16:58+0100\n"
 "PO-Revision-Date: 2013-06-16 23:46+0100\n"
 "Last-Translator: Konni <konnibe@hotmail.de>\n"
 "Language-Team: \n"
@@ -131,6 +131,9 @@ msgstr ""
 #
 msgid "Load"
 msgstr "Laden"
+#
+msgid "Loading NMEA messages from file "
+msgstr ""
 #
 msgid "Ma"
 msgstr ""
