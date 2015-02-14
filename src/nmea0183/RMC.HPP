@@ -53,7 +53,7 @@ class RMC : public RESPONSE
       */
 
       wxString          UTCTime;
-      NMEA0183_BOOLEAN IsDataValid;
+      NMEA0183P_BOOLEAN IsDataValid;
       LATLONG          Position;
       double           SpeedOverGroundKnots;
       double           TrackMadeGoodDegreesTrue;

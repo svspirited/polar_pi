@@ -89,13 +89,14 @@ class PolarDlg : public wxDialog
 		wxBoxSizer* bSizerPolar;
 		wxChoice* m_choiceMode;
 		wxStaticLine* m_staticline431;
+		wxStaticLine* m_staticline432;
 		wxSplitterWindow* m_splitter1;
 		wxPanel* m_panelPolar;
 		wxPanel* m_panel6;
 		wxGrid* m_gridEdit;
 		wxStaticText* m_staticTextEngine;
 		
-		PolarDlg( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Polar Diagram"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 968,602 ), long style = wxDEFAULT_DIALOG_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER );
+		PolarDlg( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Polar Diagram"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1024,602 ), long style = wxDEFAULT_DIALOG_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER );
 		~PolarDlg();
 		
 		void m_splitter1OnIdle( wxIdleEvent& )

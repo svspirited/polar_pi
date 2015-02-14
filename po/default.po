@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Polar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-15 20:07+0200\n"
+"POT-Creation-Date: 2015-02-12 17:27+0100\n"
 "PO-Revision-Date: 2013-05-12 17:10+0100\n"
 "Last-Translator: Konni <konnibe@hotmail.de>\n"
 "Language-Team: \n"
@@ -14,6 +14,15 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+#
+msgid "\""
+msgstr ""
+#
+msgid "'"
+msgstr ""
+#
+msgid "?"
+msgstr ""
 #
 msgid "Calculate speed-bullets for x degrees "
 msgstr ""
@@ -45,7 +54,10 @@ msgstr ""
 msgid "Degrees:"
 msgstr ""
 #
-msgid "Edit manuell"
+msgid "E"
+msgstr ""
+#
+msgid "Edit manual"
 msgstr ""
 #
 msgid "Engine started / Recording is stopped"
@@ -58,22 +70,91 @@ msgid ""
 "Range from 2,25 to 2,5 kts"
 msgstr ""
 #
+msgid "F"
+msgstr ""
+#
 msgid "Filter"
 msgstr ""
 #
 msgid "Filtered by:"
 msgstr ""
 #
+msgid "Fo1"
+msgstr ""
+#
+msgid "Fo2"
+msgstr ""
+#
+msgid "Fo3"
+msgstr ""
+#
+msgid "Fock 1"
+msgstr ""
+#
+msgid "Fock 2"
+msgstr ""
+#
+msgid "Fock 3"
+msgstr ""
+#
 msgid "GPS"
+msgstr ""
+#
+msgid "Ge1"
+msgstr ""
+#
+msgid "Ge2"
+msgstr ""
+#
+msgid "Ge3"
+msgstr ""
+#
+msgid "Genoa 1"
+msgstr ""
+#
+msgid "Genoa 2"
+msgstr ""
+#
+msgid "Genoa 3"
+msgstr ""
+#
+msgid "Ji"
+msgstr ""
+#
+msgid "Jib"
 msgstr ""
 #
 msgid "Load"
 msgstr ""
 #
+msgid "Ma"
+msgstr ""
+#
+msgid "Main"
+msgstr ""
+#
+msgid "Max. only"
+msgstr ""
+#
+msgid "Mi"
+msgstr ""
+#
+msgid "Mizzen"
+msgstr ""
+#
+msgid "Mizzen Storm"
+msgstr ""
+#
 msgid "Mode:"
 msgstr ""
 #
+msgid "Mt"
+msgstr ""
+#
 msgid "MyLabel"
+msgstr ""
+#
+msgid "NM"
 msgstr ""
 #
 msgid "Please wait."
@@ -139,6 +220,9 @@ msgstr ""
 msgid "Source:"
 msgstr ""
 #
+msgid "Sp"
+msgstr ""
+#
 msgid "Speedo"
 msgstr ""
 #
@@ -147,13 +231,19 @@ msgid ""
 "GPS uses column SOG"
 msgstr ""
 #
+msgid "Spinnacker"
+msgstr ""
+#
+msgid "St"
+msgstr ""
+#
 msgid "Start"
 msgstr ""
 #
-msgid "Stop"
+msgid "Staysail"
 msgstr ""
 #
-msgid "Testing, work in progress..."
+msgid "Stop"
 msgstr ""
 #
 msgid ""
@@ -161,10 +251,19 @@ msgid ""
 "\n"
 "It's needed to collect wind/speed-data from all available logbooks\n"
 "\n"
-"The create-button is hidden"
+"The create-button is hidden and the mode isn't useable"
+msgstr ""
+#
+msgid "Tr"
+msgstr ""
+#
+msgid "Try"
 msgstr ""
 #
 msgid "Use Average from all speed-data"
+msgstr ""
+#
+msgid "Use Max-Speed only"
 msgstr ""
 #
 msgid "Wavehight"
@@ -176,13 +275,30 @@ msgstr ""
 msgid "Wind:"
 msgstr ""
 #
-msgid "Work in progess"
-msgstr ""
-#
-msgid "Work in progress"
+msgid ""
+"You can change the abbreviations and the names of the sails\n"
+"in Options/Miscellaneous/Sails(Logbook)"
 msgstr ""
 #
 msgid "any"
+msgstr ""
+#
+msgid "day(s)"
+msgstr ""
+#
+msgid "ft"
+msgstr ""
+#
+msgid "fth"
+msgstr ""
+#
+msgid "gal"
+msgstr ""
+#
+msgid "h"
+msgstr ""
+#
+msgid "km/h"
 msgstr ""
 #
 msgid "kts"
@@ -194,8 +310,23 @@ msgstr ""
 msgid "less than 5 entries found"
 msgstr ""
 #
+msgid "m"
+msgstr ""
+#
+msgid "m/s"
+msgstr ""
+#
+msgid "mb"
+msgstr ""
+#
+msgid "month"
+msgstr ""
+#
 msgid "more than 10 entries found"
 msgstr ""
 #
 msgid "to"
+msgstr ""
+#
+msgid "week(s)"
 msgstr ""

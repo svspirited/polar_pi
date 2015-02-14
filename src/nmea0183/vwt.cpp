@@ -2,7 +2,7 @@
  *
  * Project:  OpenCPN
  * Purpose:  NMEA0183 Support Classes
- * Author:   Samuel R. Blackburn, David S. Register
+ * Author:   Samuel R. Blackburn, David S. Register, Jean-Eudes Onfray
  *
  ***************************************************************************
  *   Copyright (C) 2010 by Samuel R. Blackburn, David S Register           *
@@ -29,9 +29,7 @@
  *         "It is BSD license, do with it what you will"                   *
  */
 
-
-#if ! defined( RESPONSE_CLASS_HEADER )
-#define RESPONSE_CLASS_HEADER
+#include "nmea0183.h"
 
 /*
 ** Author: Samuel R. Blackburn
@@ -41,40 +39,101 @@
 ** You can use it any way you like.
 */
 
-class NMEA0183P;
+//IMPLEMENT_DYNAMIC( MWV, RESPONSE )
 
-class RESPONSE 
+VWT::VWT()
 {
+   Mnemonic = _T("VWT");
+   Empty();
+}
 
-   private:
+VWT::~VWT()
+{
+   Mnemonic.Empty();
+   Empty();
+}
 
-      NMEA0183P *container_p;
+void VWT::Empty( void )
+{
+//   ASSERT_VALID( this );
 
-   public:
+	WindDirectionMagnitude = 0.0;
+	DirectionOfWind = LR_Unknown;
+    WindSpeedKnots = 0.0;
+    WindSpeedms = 0.0;
+    WindSpeedKmh = 0.0;
+}
 
-      RESPONSE();
-      virtual ~RESPONSE();
+bool VWT::Parse( const SENTENCE& sentence )
+{
+//   ASSERT_VALID( this );
 
-      /*
-      ** Data
-      */
+   /*
+	** VWT - Wind Speed and Angle
+	**
+	**        1   2 3 4   5 6   7   8
+	**        |   | | |   | |   |   |
+	** $--VWT,x.x,L,x.x,N,x.x,M,x.x,K,*hh<CR><LF>
+	**
+	** 1) Wind direction magnitude in degrees
+	** 2) Wind direction Left/Right of bow
+	** 3) Speed
+	** 4) N = Knots
+	** 5) Speed
+	** 6) M = Meters Per Second
+	** 7) Speed
+	** 8) K = Kilometers Per Hour
+	** 9) Checksum
+   */
 
-      wxString ErrorMessage;
-      wxString Mnemonic;
-      wxString Talker;
+   /*
+   ** First we check the checksum...
+   */
 
-      /*
-      ** Methods
-      */
+   if ( sentence.IsChecksumBad( 9 ) == TRUE )
+   {
+      SetErrorMessage( _T("Invalid Checksum") );
+      return( FALSE );
+   } 
 
-      virtual void Empty( void ) = 0;
-      virtual bool Parse( const SENTENCE& sentence ) = 0;
-      virtual const wxString& PlainEnglish( void );
-      virtual void SetErrorMessage( const wxString& );
-      virtual void SetContainer( NMEA0183P *container );
-      virtual bool Write( SENTENCE& sentence );
-};
+   WindDirectionMagnitude = sentence.Double( 1 );
+   DirectionOfWind = sentence.LeftOrRight( 2 );
+   WindSpeedKnots = sentence.Double( 3 );
+   WindSpeedms = sentence.Double( 5 );
+   WindSpeedKmh = sentence.Double( 7 );
 
+   return( TRUE );
+}
 
+bool VWT::Write( SENTENCE& sentence )
+{
+//   ASSERT_VALID( this );
+
+   /*
+   ** Let the parent do its thing
+   */
+   
+   RESPONSE::Write( sentence );
+
+   sentence += WindDirectionMagnitude;
+   sentence += DirectionOfWind;
+   sentence += WindSpeedKnots;
+   sentence += WindSpeedms;
+   sentence += WindSpeedms;
+   sentence += WindSpeedKmh;
+
+   return( TRUE );
+}
+
+const VWT& VWT::operator = ( const VWT& source )
+{
+//   ASSERT_VALID( this );
  
-#endif // RESPONSE_CLASS_HEADER
+   WindDirectionMagnitude   = source.WindDirectionMagnitude;
+   DirectionOfWind			= source.DirectionOfWind;
+   WindSpeedKnots			= source.WindSpeedKnots;
+   WindSpeedms				= source.WindSpeedms;
+   WindSpeedKmh				= source.WindSpeedKmh;
+
+   return( *this );
+}

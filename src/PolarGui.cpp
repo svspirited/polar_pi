@@ -11,8 +11,8 @@
 
 PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
-	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+//	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	this->SetSizeHints( wxSize(-1,-1), wxDefaultSize );
 	
 	wxBoxSizer* bSizer1;
 	bSizer1 = new wxBoxSizer( wxVERTICAL );
@@ -22,78 +22,18 @@ PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	
 	bSizerPolar = new wxBoxSizer( wxHORIZONTAL );
 	
+	wxBoxSizer* bSizer14;
+	bSizer14 = new wxBoxSizer( wxHORIZONTAL );
+	
 	m_staticText11 = new wxStaticText( this, wxID_ANY, _("Mode:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText11->Wrap( -1 );
 	bSizerPolar->Add( m_staticText11, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
-	wxString m_choiceModeChoices[] = { _("Data from Logbooks"), _("Data from NMEA"), _("Data from VDR"), _("Edit manuell") };
+	wxString m_choiceModeChoices[] = { _("Data from Logbooks"), _("Data from NMEA"), _("Data from VDR"), _("Edit manual") };
 	int m_choiceModeNChoices = sizeof( m_choiceModeChoices ) / sizeof( wxString );
 	m_choiceMode = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceModeNChoices, m_choiceModeChoices, 0 );
 	m_choiceMode->SetSelection( 0 );
 	bSizerPolar->Add( m_choiceMode, 0, wxALL, 5 );
-	
-	m_staticText144 = new wxStaticText( this, wxID_ANY, _("Rings:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText144->Wrap( -1 );
-	bSizerPolar->Add( m_staticText144, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
-	
-	wxString m_choiceRingsPolarChoices[] = { _T("6"), _T("9"), _T("12"), _T("18"), _T("24") };
-	int m_choiceRingsPolarNChoices = sizeof( m_choiceRingsPolarChoices ) / sizeof( wxString );
-	m_choiceRingsPolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceRingsPolarNChoices, m_choiceRingsPolarChoices, 0 );
-	m_choiceRingsPolar->SetSelection( 0 );
-	m_choiceRingsPolar->SetToolTip( _("Set diagramm to x knots") );
-	
-	bSizerPolar->Add( m_choiceRingsPolar, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
-	
-	m_staticText145 = new wxStaticText( this, wxID_ANY, _("Degrees:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText145->Wrap( -1 );
-	bSizerPolar->Add( m_staticText145, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
-	
-	wxString m_choiceDegreesPolarChoices[] = { _T("8"), _T("10"), _T("15") };
-	int m_choiceDegreesPolarNChoices = sizeof( m_choiceDegreesPolarChoices ) / sizeof( wxString );
-	m_choiceDegreesPolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceDegreesPolarNChoices, m_choiceDegreesPolarChoices, 0 );
-	m_choiceDegreesPolar->SetSelection( 0 );
-	m_choiceDegreesPolar->SetToolTip( _("Calculate speed-bullets for x degrees ") );
-	
-	bSizerPolar->Add( m_choiceDegreesPolar, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
-	
-	m_staticText148 = new wxStaticText( this, wxID_ANY, _("Wind:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText148->Wrap( -1 );
-	bSizerPolar->Add( m_staticText148, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
-	
-	wxString m_choiceWindPolarChoices[] = { _("any") };
-	int m_choiceWindPolarNChoices = sizeof( m_choiceWindPolarChoices ) / sizeof( wxString );
-	m_choiceWindPolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceWindPolarNChoices, m_choiceWindPolarChoices, 0 );
-	m_choiceWindPolar->SetSelection( 0 );
-	bSizerPolar->Add( m_choiceWindPolar, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
-	
-	m_staticline441 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_VERTICAL );
-	bSizerPolar->Add( m_staticline441, 0, wxEXPAND | wxALL, 5 );
-	
-	m_staticText146 = new wxStaticText( this, wxID_ANY, _("Source:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText146->Wrap( -1 );
-	bSizerPolar->Add( m_staticText146, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
-	
-	wxString m_choiceSourcePolarChoices[] = { _("Speedo"), _("GPS") };
-	int m_choiceSourcePolarNChoices = sizeof( m_choiceSourcePolarChoices ) / sizeof( wxString );
-	m_choiceSourcePolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceSourcePolarNChoices, m_choiceSourcePolarChoices, 0 );
-	m_choiceSourcePolar->SetSelection( 0 );
-	m_choiceSourcePolar->SetToolTip( _("Speedo uses column STW\nGPS uses column SOG") );
-	
-	bSizerPolar->Add( m_choiceSourcePolar, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
-	
-	m_staticText141 = new wxStaticText( this, wxID_ANY, _("Current <"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText141->Wrap( -1 );
-	m_staticText141->Hide();
-	
-	bSizerPolar->Add( m_staticText141, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
-	
-	wxString m_choiceCurrentPolarChoices[] = { _("any"), _T("0.5"), _T("1.0") };
-	int m_choiceCurrentPolarNChoices = sizeof( m_choiceCurrentPolarChoices ) / sizeof( wxString );
-	m_choiceCurrentPolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceCurrentPolarNChoices, m_choiceCurrentPolarChoices, 0 );
-	m_choiceCurrentPolar->SetSelection( 0 );
-	m_choiceCurrentPolar->Hide();
-	
-	bSizerPolar->Add( m_choiceCurrentPolar, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
 	
 	m_buttonFilterPolar = new wxButton( this, wxID_ANY, _("Filter"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizerPolar->Add( m_buttonFilterPolar, 0, wxALL, 5 );
@@ -107,14 +47,83 @@ PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticline431 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_VERTICAL );
 	bSizerPolar->Add( m_staticline431, 0, wxEXPAND | wxALL, 5 );
 	
+	bSizerPolar->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_staticline432 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_VERTICAL );
+	bSizerPolar->Add( m_staticline432, 0, wxEXPAND | wxALL, 5 );
+	
 	m_buttonSavePolar = new wxButton( this, wxID_ANY, _("Save"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizerPolar->Add( m_buttonSavePolar, 0, wxALL, 5 );
+	bSizerPolar->Add( m_buttonSavePolar, 0, wxALIGN_RIGHT|wxALL, 5 );
 	
 	m_buttonLoad = new wxButton( this, wxID_ANY, _("Load"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizerPolar->Add( m_buttonLoad, 0, wxALL, 5 );
-	
-	
+	bSizerPolar->Add( m_buttonLoad, 0, wxALIGN_RIGHT|wxALL, 5 );
+		
 	bSizer48->Add( bSizerPolar, 0, 0, 5 );
+
+	m_staticText144 = new wxStaticText( this, wxID_ANY, _("Rings:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText144->Wrap( -1 );
+	bSizer14->Add( m_staticText144, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
+	
+	wxString m_choiceRingsPolarChoices[] = { _T("6"), _T("9"), _T("12"), _T("18"), _T("24") };
+	int m_choiceRingsPolarNChoices = sizeof( m_choiceRingsPolarChoices ) / sizeof( wxString );
+	m_choiceRingsPolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceRingsPolarNChoices, m_choiceRingsPolarChoices, 0 );
+	m_choiceRingsPolar->SetSelection( 0 );
+	m_choiceRingsPolar->SetToolTip( _("Set diagramm to x knots") );
+	
+	bSizer14->Add( m_choiceRingsPolar, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
+	
+	m_staticText145 = new wxStaticText( this, wxID_ANY, _("Degrees:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText145->Wrap( -1 );
+	bSizer14->Add( m_staticText145, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
+	
+	wxString m_choiceDegreesPolarChoices[] = { _T("8"), _T("10"), _T("15") };
+	int m_choiceDegreesPolarNChoices = sizeof( m_choiceDegreesPolarChoices ) / sizeof( wxString );
+	m_choiceDegreesPolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceDegreesPolarNChoices, m_choiceDegreesPolarChoices, 0 );
+	m_choiceDegreesPolar->SetSelection( 1 );
+	m_choiceDegreesPolar->SetToolTip( _("Calculate speed-bullets for x degrees ") );
+	
+	bSizer14->Add( m_choiceDegreesPolar, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
+	
+	m_staticText148 = new wxStaticText( this, wxID_ANY, _("Wind:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText148->Wrap( -1 );
+	bSizer14->Add( m_staticText148, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
+	
+	wxString m_choiceWindPolarChoices[] = { _("any") };
+	int m_choiceWindPolarNChoices = sizeof( m_choiceWindPolarChoices ) / sizeof( wxString );
+	m_choiceWindPolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceWindPolarNChoices, m_choiceWindPolarChoices, 0 );
+	m_choiceWindPolar->SetSelection( 0 );
+	bSizer14->Add( m_choiceWindPolar, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
+	
+	m_staticline441 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_VERTICAL );
+	bSizer14->Add( m_staticline441, 0, wxEXPAND | wxALL, 5 );
+	
+	m_staticText146 = new wxStaticText( this, wxID_ANY, _("Source:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText146->Wrap( -1 );
+	bSizer14->Add( m_staticText146, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
+	
+	wxString m_choiceSourcePolarChoices[] = { _("Speedo"), _("GPS") };
+	int m_choiceSourcePolarNChoices = sizeof( m_choiceSourcePolarChoices ) / sizeof( wxString );
+	m_choiceSourcePolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceSourcePolarNChoices, m_choiceSourcePolarChoices, 0 );
+	m_choiceSourcePolar->SetSelection( 0 );
+	m_choiceSourcePolar->SetToolTip( _("Speedo uses column STW\nGPS uses column SOG") );
+	
+	bSizer14->Add( m_choiceSourcePolar, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
+	
+	m_staticText141 = new wxStaticText( this, wxID_ANY, _("Current <"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText141->Wrap( -1 );
+	m_staticText141->Hide();
+	
+	bSizer14->Add( m_staticText141, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
+	
+	wxString m_choiceCurrentPolarChoices[] = { _("any"), _T("0.5"), _T("1.0") };
+	int m_choiceCurrentPolarNChoices = sizeof( m_choiceCurrentPolarChoices ) / sizeof( wxString );
+	m_choiceCurrentPolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceCurrentPolarNChoices, m_choiceCurrentPolarChoices, 0 );
+	m_choiceCurrentPolar->SetSelection( 0 );
+	m_choiceCurrentPolar->Hide();
+	
+	bSizer14->Add( m_choiceCurrentPolar, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
+	
+	bSizer48->Add( bSizer14, 0, 0, 5 );
 	
 	m_staticline45 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
 	bSizer48->Add( m_staticline45, 0, wxEXPAND | wxALL, 0 );
@@ -136,7 +145,7 @@ PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_gridEdit = new wxGrid( m_panel6, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 	
 	// Grid
-	m_gridEdit->CreateGrid( 20, 10 );
+	m_gridEdit->CreateGrid( 36, 10 );
 	m_gridEdit->EnableEditing( true );
 	m_gridEdit->EnableGridLines( true );
 	m_gridEdit->EnableDragGridSize( false );
@@ -171,41 +180,50 @@ PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	// Rows
 	m_gridEdit->EnableDragRowSize( true );
 	m_gridEdit->SetRowLabelSize( 50 );
-	m_gridEdit->SetRowLabelValue( 0, _T("24\xB0") );
-	m_gridEdit->SetRowLabelValue( 1, _T("32\xB0") );
-	m_gridEdit->SetRowLabelValue( 2, _T("40\xB0") );
-	m_gridEdit->SetRowLabelValue( 3, _T("48\xB0") );
-	m_gridEdit->SetRowLabelValue( 4, _T("56\xB0") );
-	m_gridEdit->SetRowLabelValue( 5, _T("64\xB0") );
-	m_gridEdit->SetRowLabelValue( 6, _T("72\xB0") );
-	m_gridEdit->SetRowLabelValue( 7, _T("80\xB0") );
-	m_gridEdit->SetRowLabelValue( 8, _T("88\xB0") );
-	m_gridEdit->SetRowLabelValue( 9, _T("96\xB0") );
-	m_gridEdit->SetRowLabelValue( 10, _T("104\xB0") );
-	m_gridEdit->SetRowLabelValue( 11, _T("112\xB0") );
-	m_gridEdit->SetRowLabelValue( 12, _T("120\xB0") );
-	m_gridEdit->SetRowLabelValue( 13, _T("128\xB0") );
-	m_gridEdit->SetRowLabelValue( 14, _T("136\xB0") );
-	m_gridEdit->SetRowLabelValue( 15, _T("144\xB0") );
-	m_gridEdit->SetRowLabelValue( 16, _T("152\xB0") );
-	m_gridEdit->SetRowLabelValue( 17, _T("160\xB0") );
-	m_gridEdit->SetRowLabelValue( 18, _T("168\xB0") );
-	m_gridEdit->SetRowLabelValue( 19, _T("176\xB0") );
+	m_gridEdit->SetRowLabelValue( 0, _T("5\xB0") );
+	m_gridEdit->SetRowLabelValue( 1, _T("10\xB0") );
+	m_gridEdit->SetRowLabelValue( 2, _T("15\xB0") );
+	m_gridEdit->SetRowLabelValue( 3, _T("20\xB0") );
+	m_gridEdit->SetRowLabelValue( 4, _T("25\xB0") );
+	m_gridEdit->SetRowLabelValue( 5, _T("30\xB0") );
+	m_gridEdit->SetRowLabelValue( 6, _T("35\xB0") );
+	m_gridEdit->SetRowLabelValue( 7, _T("40\xB0") );
+	m_gridEdit->SetRowLabelValue( 8, _T("45\xB0") );
+	m_gridEdit->SetRowLabelValue( 9, _T("50\xB0") );
+	m_gridEdit->SetRowLabelValue( 10, _T("55\xB0") );
+	m_gridEdit->SetRowLabelValue( 11, _T("60\xB0") );
+	m_gridEdit->SetRowLabelValue( 12, _T("65\xB0") );
+	m_gridEdit->SetRowLabelValue( 13, _T("70\xB0") );
+	m_gridEdit->SetRowLabelValue( 14, _T("75\xB0") );
+	m_gridEdit->SetRowLabelValue( 15, _T("80\xB0") );
+	m_gridEdit->SetRowLabelValue( 16, _T("85\xB0") );
+	m_gridEdit->SetRowLabelValue( 17, _T("90\xB0") );
+	m_gridEdit->SetRowLabelValue( 18, _T("95\xB0") );
+	m_gridEdit->SetRowLabelValue( 19, _T("100\xB0") );
+	m_gridEdit->SetRowLabelValue( 20, _T("105\xB0") );
+	m_gridEdit->SetRowLabelValue( 21, _T("110\xB0") );
+	m_gridEdit->SetRowLabelValue( 22, _T("115\xB0") );
+	m_gridEdit->SetRowLabelValue( 23, _T("120\xB0") );
+	m_gridEdit->SetRowLabelValue( 24, _T("125\xB0") );
+	m_gridEdit->SetRowLabelValue( 25, _T("130\xB0") );
+	m_gridEdit->SetRowLabelValue( 26, _T("135\xB0") );
+	m_gridEdit->SetRowLabelValue( 27, _T("140\xB0") );
+	m_gridEdit->SetRowLabelValue( 28, _T("145\xB0") );
+	m_gridEdit->SetRowLabelValue( 29, _T("150\xB0") );
+	m_gridEdit->SetRowLabelValue( 30, _T("155\xB0") );
+	m_gridEdit->SetRowLabelValue( 31, _T("160\xB0") );
+	m_gridEdit->SetRowLabelValue( 32, _T("165\xB0") );
+	m_gridEdit->SetRowLabelValue( 33, _T("170\xB0") );
+	m_gridEdit->SetRowLabelValue( 34, _T("175\xB0") );
+	m_gridEdit->SetRowLabelValue( 35, _T("180\xB0") );
 	m_gridEdit->SetRowLabelAlignment( wxALIGN_CENTRE, wxALIGN_CENTRE );
 	
 	// Label Appearance
 	
 	// Cell Defaults
 	m_gridEdit->SetDefaultCellAlignment( wxALIGN_RIGHT, wxALIGN_CENTRE );
-	bSizer13->Add( m_gridEdit, 0, wxALL|wxEXPAND, 0 );
-	
-	m_staticTextEngine = new wxStaticText( m_panel6, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextEngine->Wrap( -1 );
-	bSizer13->Add( m_staticTextEngine, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
-	
-	
-	bSizer13->Add( 0, 0, 1, wxEXPAND, 5 );
-	
+	bSizer13->Add( m_gridEdit, 1, wxALL|wxEXPAND, 5 );
+		
 	wxBoxSizer* bSizer12;
 	bSizer12 = new wxBoxSizer( wxHORIZONTAL );
 	
@@ -233,11 +251,10 @@ PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	this->Layout();
 	
 	this->Centre( wxBOTH );
-	this->Centre( wxBOTH );
 	
 	// Connect Events
-	this->Connect( wxEVT_INIT_DIALOG, wxInitDialogEventHandler( PolarDlg::PolarDlgOnInitDialog ) );this->Connect( wxEVT_INIT_DIALOG, wxInitDialogEventHandler( PolarDlg::PolarDlgOnInitDialog ) );
-	this->Connect( wxEVT_SIZE, wxSizeEventHandler( PolarDlg::OnSizePolarDlg ) );this->Connect( wxEVT_SIZE, wxSizeEventHandler( PolarDlg::OnSizePolarDlg ) );
+	this->Connect( wxEVT_INIT_DIALOG, wxInitDialogEventHandler( PolarDlg::PolarDlgOnInitDialog ) );
+	this->Connect( wxEVT_SIZE, wxSizeEventHandler( PolarDlg::OnSizePolarDlg ) );
 	m_choiceMode->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( PolarDlg::OnChoiceMode ), NULL, this );
 	m_choiceRingsPolar->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( PolarDlg::OnChoicePolarKnots ), NULL, this );
 	m_choiceDegreesPolar->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( PolarDlg::OnChoiceDegreesPolar ), NULL, this );
@@ -258,8 +275,8 @@ PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, cons
 PolarDlg::~PolarDlg()
 {
 	// Disconnect Events
-	this->Disconnect( wxEVT_INIT_DIALOG, wxInitDialogEventHandler( PolarDlg::PolarDlgOnInitDialog ) );this->Disconnect( wxEVT_INIT_DIALOG, wxInitDialogEventHandler( PolarDlg::PolarDlgOnInitDialog ) );
-	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( PolarDlg::OnSizePolarDlg ) );this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( PolarDlg::OnSizePolarDlg ) );
+	this->Disconnect( wxEVT_INIT_DIALOG, wxInitDialogEventHandler( PolarDlg::PolarDlgOnInitDialog ) );
+	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( PolarDlg::OnSizePolarDlg ) );
 	m_choiceMode->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( PolarDlg::OnChoiceMode ), NULL, this );
 	m_choiceRingsPolar->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( PolarDlg::OnChoicePolarKnots ), NULL, this );
 	m_choiceDegreesPolar->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( PolarDlg::OnChoiceDegreesPolar ), NULL, this );
@@ -372,7 +389,7 @@ FilterDlg::FilterDlg( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_panel33 = new wxPanel( m_notebook6, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	bSizer54 = new wxBoxSizer( wxVERTICAL );
 	
-	m_staticText152 = new wxStaticText( m_panel33, wxID_ANY, _("Work in irogress"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText152 = new wxStaticText( m_panel33, wxID_ANY, _("Work in progress"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText152->Wrap( -1 );
 	bSizer54->Add( m_staticText152, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	

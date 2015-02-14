@@ -71,7 +71,7 @@ extern "C" DECL_EXP void destroy_pi(opencpn_plugin* p)
 //---------------------------------------------------------------------------------------------------------
 
 polar_pi::polar_pi(void *ppimgr)
-      :opencpn_plugin_17(ppimgr)
+      :opencpn_plugin_19(ppimgr)
 {
       // Create the PlugIn icons
       initialize_images();
@@ -295,7 +295,6 @@ void polar_pi::OnToolbarToolCallback(int id)
 
       // Qualify the Polar dialog position
             bool b_reset_pos = false;
-
 
 #ifdef __WXMSW__
         //  Support MultiMonitor setups which an allow negative window positions.

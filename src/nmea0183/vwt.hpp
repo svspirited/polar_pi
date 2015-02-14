@@ -2,7 +2,7 @@
  *
  * Project:  OpenCPN
  * Purpose:  NMEA0183 Support Classes
- * Author:   Samuel R. Blackburn, David S. Register
+ * Author:   Samuel R. Blackburn, David S. Register, Jean-Eudes Onfray
  *
  ***************************************************************************
  *   Copyright (C) 2010 by Samuel R. Blackburn, David S Register           *
@@ -29,9 +29,8 @@
  *         "It is BSD license, do with it what you will"                   *
  */
 
-
-#if ! defined( RSA_CLASS_HEADER )
-#define RSA_CLASS_HEADER
+#if ! defined( VWT_CLASS_HEADER )
+#define VWT_CLASS_HEADER
 
 /*
 ** Author: Samuel R. Blackburn
@@ -41,23 +40,24 @@
 ** You can use it any way you like.
 */
 
-class RSA : public RESPONSE
+class VWT : public RESPONSE
 {
-//   DECLARE_DYNAMIC( RSA )
+//   DECLARE_DYNAMIC( MWV )
 
    public:
 
-      RSA();
-     ~RSA();
+      VWT();
+     ~VWT();
 
       /*
       ** Data
       */
 
-      double           Starboard;
-      NMEA0183P_BOOLEAN IsStarboardDataValid;
-      double           Port;
-      NMEA0183P_BOOLEAN IsPortDataValid;
+      double           WindDirectionMagnitude;
+      LEFTRIGHT	     DirectionOfWind;
+      double           WindSpeedKnots;
+      double           WindSpeedms;
+      double           WindSpeedKmh;
 
       /*
       ** Methods
@@ -71,7 +71,7 @@ class RSA : public RESPONSE
       ** Operators
       */
 
-      virtual const RSA& operator = ( const RSA& source );
+      virtual const VWT& operator = ( const VWT& source );
 };
 
-#endif // RSA_CLASS_HEADER
+#endif // VWT_CLASS_HEADER

@@ -53,7 +53,7 @@ class RMB : public RESPONSE
       ** Data
       */
 
-      NMEA0183_BOOLEAN IsDataValid;
+      NMEA0183P_BOOLEAN IsDataValid;
       double           CrossTrackError;
       LEFTRIGHT        DirectionToSteer;
       wxString          To;
@@ -62,7 +62,7 @@ class RMB : public RESPONSE
       double           RangeToDestinationNauticalMiles;
       double           BearingToDestinationDegreesTrue;
       double           DestinationClosingVelocityKnots;
-	  NMEA0183_BOOLEAN IsArrivalCircleEntered;
+	  NMEA0183P_BOOLEAN IsArrivalCircleEntered;
 
       /*
       ** Methods

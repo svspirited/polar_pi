@@ -44,7 +44,7 @@
 WX_DEFINE_LIST(MRL);
 
 
-NMEA0183::NMEA0183()
+NMEA0183P::NMEA0183P()
 {
    initialize();
 
@@ -136,19 +136,19 @@ NMEA0183::NMEA0183()
    set_container_pointers();
 }
 
-NMEA0183::~NMEA0183()
+NMEA0183P::~NMEA0183P()
 {
    initialize();
 }
 
-void NMEA0183::initialize( void )
+void NMEA0183P::initialize( void )
 {
 //   ASSERT_VALID( this );
 
    ErrorMessage.Empty();
 }
 
-void NMEA0183::set_container_pointers( void )
+void NMEA0183P::set_container_pointers( void )
 {
 //   ASSERT_VALID( this );
 
@@ -169,7 +169,7 @@ void NMEA0183::set_container_pointers( void )
    }
 }
 
-void NMEA0183::sort_response_table( void )
+void NMEA0183P::sort_response_table( void )
 {
 //   ASSERT_VALID( this );
 
@@ -211,7 +211,7 @@ void NMEA0183::sort_response_table( void )
 ** Public Interface
 */
 
-bool NMEA0183::IsGood( void ) const
+bool NMEA0183P::IsGood( void ) const
 {
 //   ASSERT_VALID( this );
 
@@ -242,7 +242,7 @@ bool NMEA0183::IsGood( void ) const
 }
 
 
-bool NMEA0183::PreParse( void )
+bool NMEA0183P::PreParse( void )
 {
       if ( IsGood() )
       {
@@ -268,7 +268,7 @@ bool NMEA0183::PreParse( void )
 }
 
 
-bool NMEA0183::Parse( void )
+bool NMEA0183P::Parse( void )
 {
    bool return_value = FALSE;
 
@@ -350,7 +350,7 @@ bool NMEA0183::Parse( void )
    return( return_value );
 }
 
-NMEA0183& NMEA0183::operator << ( wxString & source )
+NMEA0183P& NMEA0183P::operator << ( wxString & source )
 {
 //   ASSERT_VALID( this );
 
@@ -359,7 +359,7 @@ NMEA0183& NMEA0183::operator << ( wxString & source )
    return( *this );
 }
 
-NMEA0183& NMEA0183::operator >> ( wxString& destination )
+NMEA0183P& NMEA0183P::operator >> ( wxString& destination )
 {
 //   ASSERT_VALID( this );
 

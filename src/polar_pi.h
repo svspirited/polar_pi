@@ -33,13 +33,13 @@
   #include "wx/wx.h"
 #endif //precompiled headers
 
-#define     PLUGIN_VERSION_MAJOR    0
-#define     PLUGIN_VERSION_MINOR    6
+#define     PLUGIN_VERSION_MAJOR    1
+#define     PLUGIN_VERSION_MINOR    0
 
 #define     MY_API_VERSION_MAJOR    1
-#define     MY_API_VERSION_MINOR    7
+#define     MY_API_VERSION_MINOR    9
 
-#include "../../../include/ocpn_plugin.h"
+#include "ocpn_plugin.h"
 
 #include "PolarDialog.h"
 #include "Options.h"
@@ -50,7 +50,7 @@
 
 #define POLAR_TOOL_POSITION    -1          // Request default positioning of toolbar tool
 
-class polar_pi : public opencpn_plugin_17
+class polar_pi : public opencpn_plugin_19
 {
 public:
       polar_pi(void *ppimgr);

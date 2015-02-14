@@ -8,17 +8,17 @@
 #include <wx/dynarray.h>
 #include <map>
 
-#include "nmea0183.h"
+#include "nmea0183/nmea0183.h"
 
 WX_DEFINE_ARRAY_DOUBLE(int, ArrayOfDouble);
 
-#define WINDDIR 40
+#define WINDDIR 72
 
 class PolarDialog;
 class polar_pi;
 class FilterDlg;
 class Options;
-//class NMEA0183;
+//class NMEA0183P;
 
 class Polar
 {
@@ -95,11 +95,10 @@ private:
 	PolarDialog*	dlg;
 	FilterDlg*		filterDlg;
 
-	NMEA0183       	m_NMEA0183;
+	NMEA0183P       	m_NMEA0183;
 
 	wxString		logbookDataPath;
 	wxSize			center;
-	int				radius;
 	int				rSpeed[24];
 	double			dist;
 
@@ -148,7 +147,6 @@ class FilterDlg : public wxDialog
 		wxStaticText* m_staticTextUnitHeight;
 		wxFlexGridSizer* fgSizer50;
 		wxPanel* m_panel33;
-		wxButton* m_buttonSailsReset;
 		wxStaticText* m_staticTextKnot;
 
 		PolarDialog*	dlg;
@@ -187,7 +185,7 @@ class FilterDlg : public wxDialog
 
 		void init();
 		
-		FilterDlg( PolarDialog* parent, Polar* polar,wxWindowID id = wxID_ANY, const wxString& title = _("Polar Filter"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 451,470 ), long style = wxDEFAULT_DIALOG_STYLE ); 
+		FilterDlg( PolarDialog* parent, Polar* polar,wxWindowID id = wxID_ANY, const wxString& title = _("Polar Filter"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 451,600 ), long style = wxDEFAULT_DIALOG_STYLE ); 
 		~FilterDlg();
 	
 };

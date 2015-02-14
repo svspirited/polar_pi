@@ -76,7 +76,7 @@ Options::Options(void)
 	sailsName.Add(_("Mizzen Storm"));
 	sailsName.Add(_("Staysail"));
 	sailsName.Add(_("Spinnacker"));
-	sailsName.Add(_("You can change the abreviations and the names of the sails\nin Options/Miscellaneous/Sails"));
+	sailsName.Add(_("You can change the abbreviations and the names of the sails\nin Options/Miscellaneous/Sails(Logbook)"));
 
 	rowGap = 0;
 	colGap = 0;
@@ -109,18 +109,18 @@ Options::Options(void)
 	noGPS = true;
 	colouredMaintenance = true;
 	waypointArrived = false;
-	waypointText = _("automatic line Waypoint arrived");
-	guardChange = false;
-	guardChangeText = _("automatic line\nchange of guards");
-	courseChange = false;
-	courseChangeDegrees = _T("90");
-	courseChangeText = _("automatic line\nchange of course >");
-	courseTextAfterMinutes = _T("5");
-	everySM = false;
-	everySMAmount = _T("10");
-	everySMText = _("automatic line\nDistance > ");
-	dCourseChangeDegrees = -1;
-	dEverySM = -1;
+//	waypointText = _("automatic line Waypoint arrived");
+//	guardChange = false;
+//	guardChangeText = _("automatic line\nchange of guards");
+//	courseChange = false;
+//	courseChangeDegrees = _T("90");
+//	courseChangeText = _("automatic line\nchange of course >");
+//	courseTextAfterMinutes = _T("5");
+//	everySM = false;
+//	everySMAmount = _T("10");
+//	everySMText = _("automatic line\nDistance > ");
+//	dCourseChangeDegrees = -1;
+//	dEverySM = -1;
 
 	// Timer 
 	timer = false;
@@ -133,9 +133,9 @@ Options::Options(void)
 	thour = _T("0");
 	tmin = _T("1");;
 	tsec = _T("0");;
-	ttext = _("Automatic line by timer\n\n\
+/*	ttext = _("Automatic line by timer\n\n\
 You can set/unset a timer-interval\n\
-or change this text in Toolbox/Plugins/Logbook\n\nShift+Enter appends a new line");
+or change this text in Toolbox/Plugins/Logbook\n\nShift+Enter appends a new line"); */
 	timerSec = 5;
 
 	// Grid Navigation

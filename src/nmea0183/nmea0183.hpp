@@ -106,6 +106,7 @@
 #include "mwv.hpp"
 #include "vhw.hpp"
 #include "vwr.hpp"
+#include "vwt.hpp"
 #include "zda.hpp"
 /*
 #include "ROT.hpp"
@@ -133,7 +134,7 @@
 
 WX_DECLARE_LIST(RESPONSE, MRL);
 
-class NMEA0183
+class NMEA0183P
 {
 
    private:
@@ -151,8 +152,8 @@ class NMEA0183
 
    public:
 
-      NMEA0183();
-      virtual ~NMEA0183();
+      NMEA0183P();
+      virtual ~NMEA0183P();
 
       /*
       ** NMEA 0183 Sentences we understand
@@ -227,6 +228,7 @@ class NMEA0183
 */
       VTG Vtg;
       VWR Vwr;
+      VWT Vwt;
 /*
       WCV Wcv;
       WNC Wnc;
@@ -255,8 +257,8 @@ class NMEA0183
       virtual bool Parse( void );
       virtual bool PreParse( void );
 
-      NMEA0183& operator << ( wxString& source );
-      NMEA0183& operator >> ( wxString& destination );
+      NMEA0183P& operator << ( wxString& source );
+      NMEA0183P& operator >> ( wxString& destination );
 };
 
 #endif // NMEA_0183_CLASS_HEADER
