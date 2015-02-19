@@ -176,7 +176,7 @@ void PolarDialog::OnChoiceMode( wxCommandEvent& event )
 void PolarDialog::OnGridCellChange( wxGridEvent& event )
 {
 	wxString s = m_gridEdit->GetCellValue(event.GetRow(),event.GetCol());
-	polar->setValue(s,event.GetRow(),event.GetCol());
+	polar->setValue(s,event.GetRow(),event.GetCol(),true);
 	bool comma = false;
 
 	if(!s.IsEmpty())

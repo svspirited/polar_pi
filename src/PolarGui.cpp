@@ -29,7 +29,7 @@ PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText11->Wrap( -1 );
 	bSizerPolar->Add( m_staticText11, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
-	wxString m_choiceModeChoices[] = { _("Data from Logbooks"), _("Data from NMEA"), _("Data from VDR"), _("Edit manual") };
+	wxString m_choiceModeChoices[] = { _("Data from Logbooks"), _("Data from NMEA"), _("Data from File"), _("Edit manual") };
 	int m_choiceModeNChoices = sizeof( m_choiceModeChoices ) / sizeof( wxString );
 	m_choiceMode = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceModeNChoices, m_choiceModeChoices, 0 );
 	m_choiceMode->SetSelection( 0 );
@@ -79,7 +79,7 @@ PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxString m_choiceDegreesPolarChoices[] = { _T("8"), _T("10"), _T("15") };
 	int m_choiceDegreesPolarNChoices = sizeof( m_choiceDegreesPolarChoices ) / sizeof( wxString );
 	m_choiceDegreesPolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceDegreesPolarNChoices, m_choiceDegreesPolarChoices, 0 );
-	m_choiceDegreesPolar->SetSelection( 1 );
+	m_choiceDegreesPolar->SetSelection( 0 );
 	m_choiceDegreesPolar->SetToolTip( _("Calculate speed-bullets for x degrees ") );
 	
 	bSizer14->Add( m_choiceDegreesPolar, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
@@ -145,36 +145,56 @@ PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_gridEdit = new wxGrid( m_panel6, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 	
 	// Grid
-	m_gridEdit->CreateGrid( 36, 10 );
+	m_gridEdit->CreateGrid( 36, 20 );
 	m_gridEdit->EnableEditing( true );
 	m_gridEdit->EnableGridLines( true );
 	m_gridEdit->EnableDragGridSize( false );
 	m_gridEdit->SetMargins( 0, 0 );
 	
 	// Columns
-	m_gridEdit->SetColSize( 0, 53 );
-	m_gridEdit->SetColSize( 1, 53 );
-	m_gridEdit->SetColSize( 2, 53 );
-	m_gridEdit->SetColSize( 3, 53 );
-	m_gridEdit->SetColSize( 4, 53 );
-	m_gridEdit->SetColSize( 5, 53 );
-	m_gridEdit->SetColSize( 6, 53 );
-	m_gridEdit->SetColSize( 7, 53 );
-	m_gridEdit->SetColSize( 8, 53 );
-	m_gridEdit->SetColSize( 9, 53 );
+	m_gridEdit->SetColSize( 0, 40 );
+	m_gridEdit->SetColSize( 1, 40 );
+	m_gridEdit->SetColSize( 2, 40 );
+	m_gridEdit->SetColSize( 3, 40 );
+	m_gridEdit->SetColSize( 4, 40 );
+	m_gridEdit->SetColSize( 5, 40 );
+	m_gridEdit->SetColSize( 6, 40 );
+	m_gridEdit->SetColSize( 7, 40 );
+	m_gridEdit->SetColSize( 8, 40 );
+	m_gridEdit->SetColSize( 9, 40 );
+	m_gridEdit->SetColSize( 10, 40 );
+	m_gridEdit->SetColSize( 11, 40 );
+	m_gridEdit->SetColSize( 12, 40 );
+	m_gridEdit->SetColSize( 13, 40 );
+	m_gridEdit->SetColSize( 14, 40 );
+	m_gridEdit->SetColSize( 15, 40 );
+	m_gridEdit->SetColSize( 16, 40 );
+	m_gridEdit->SetColSize( 17, 40 );
+	m_gridEdit->SetColSize( 18, 40 );
+	m_gridEdit->SetColSize( 19, 40 );
 	m_gridEdit->EnableDragColMove( false );
 	m_gridEdit->EnableDragColSize( true );
 	m_gridEdit->SetColLabelSize( 30 );
-	m_gridEdit->SetColLabelValue( 0, _T("4") );
-	m_gridEdit->SetColLabelValue( 1, _T("8") );
-	m_gridEdit->SetColLabelValue( 2, _T("12") );
-	m_gridEdit->SetColLabelValue( 3, _T("16") );
-	m_gridEdit->SetColLabelValue( 4, _T("20") );
-	m_gridEdit->SetColLabelValue( 5, _T("24") );
-	m_gridEdit->SetColLabelValue( 6, _T("28") );
-	m_gridEdit->SetColLabelValue( 7, _T("32") );
-	m_gridEdit->SetColLabelValue( 8, _T("36") );
-	m_gridEdit->SetColLabelValue( 9, _T("40") );
+	m_gridEdit->SetColLabelValue( 0, _T("2") );
+	m_gridEdit->SetColLabelValue( 1, _T("4") );
+	m_gridEdit->SetColLabelValue( 2, _T("6") );
+	m_gridEdit->SetColLabelValue( 3, _T("8") );
+	m_gridEdit->SetColLabelValue( 4, _T("10") );
+	m_gridEdit->SetColLabelValue( 5, _T("12") );
+	m_gridEdit->SetColLabelValue( 6, _T("14") );
+	m_gridEdit->SetColLabelValue( 7, _T("16") );
+	m_gridEdit->SetColLabelValue( 8, _T("18") );
+	m_gridEdit->SetColLabelValue( 9, _T("20") );
+	m_gridEdit->SetColLabelValue( 10, _T("22") );
+	m_gridEdit->SetColLabelValue( 11, _T("24") );
+	m_gridEdit->SetColLabelValue( 12, _T("26") );
+	m_gridEdit->SetColLabelValue( 13, _T("28") );
+	m_gridEdit->SetColLabelValue( 14, _T("30") );
+	m_gridEdit->SetColLabelValue( 15, _T("32") );
+	m_gridEdit->SetColLabelValue( 16, _T("34") );
+	m_gridEdit->SetColLabelValue( 17, _T("36") );
+	m_gridEdit->SetColLabelValue( 18, _T("38") );
+	m_gridEdit->SetColLabelValue( 19, _T("40") );
 	m_gridEdit->SetColLabelAlignment( wxALIGN_CENTRE, wxALIGN_CENTRE );
 	
 	// Rows

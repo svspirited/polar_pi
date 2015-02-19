@@ -46,12 +46,12 @@ public:
 		int		scount[WINDDIR];
 		std::multimap<int,double> winddir;
 		double wdirMax[WINDDIR];
-		double wdirMin[WINDDIR];
+		double wdirCur[WINDDIR];
 		double wdirTotal[WINDDIR];
-	}windsp[10];
+	}windsp[20];
 
 	wxDC*			dc;
-	wxColor			windColor[10];
+	wxColor			windColor[20];
 	polar_pi*		plugin;
 	Options*		opt;
 
@@ -83,7 +83,8 @@ public:
 	void showDlg();
 	void source(int sel);
 	void setMode(int sel);
-	void setValue(wxString s, int row, int col);
+	void setValue(wxString s, int row, int col, bool cnt);
+	void CheckInsertSpeed(int row, int col, double speed);
 	void setSentence(wxString sentence);
 	void reset();
 	bool insert();
@@ -166,6 +167,9 @@ class FilterDlg : public wxDialog
 		
 		// Virtual event handlers, overide them in your derived class
 		void OnOKButtonClick( wxCommandEvent& event );
+		void OnMaxButtonClick( wxCommandEvent& event );
+		void OnAverageButtonClick( wxCommandEvent& event );
+		void OnRangeButtonClick( wxCommandEvent& event );
 		
 	
 	public:
@@ -180,8 +184,8 @@ class FilterDlg : public wxDialog
 		wxCheckBox* checkboxSails[14];
 		wxChoice* checkboxWaveFrom[14];
 		wxChoice* checkboxWaveTo[14];
-		wxArrayString m_choiceChoicesFrom[10];
-		wxArrayString m_choiceChoicesTo[10];
+		wxArrayString m_choiceChoicesFrom[20];
+		wxArrayString m_choiceChoicesTo[20];
 
 		void init();
 		

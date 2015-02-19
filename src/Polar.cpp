@@ -39,6 +39,16 @@ Polar::Polar(PolarDialog* parent)
 	windColor[7] = wxTheColourDatabase->Find(_T("RED"));
 	windColor[8] = wxTheColourDatabase->Find(_T("VIOLET RED"));
 	windColor[9] = wxTheColourDatabase->Find(_T("VIOLET"));
+	windColor[10] = wxTheColourDatabase->Find(_T("STEEL BLUE"));
+	windColor[11] = wxTheColourDatabase->Find(_T("DARK GREEN"));
+	windColor[12] = wxTheColourDatabase->Find(_T("MAGENTA"));
+	windColor[13] = wxTheColourDatabase->Find(_T("AQUAMARINE"));
+	windColor[14] = wxTheColourDatabase->Find(_T("GREEN YELLOW"));
+	windColor[15] = wxTheColourDatabase->Find(_T("SKY BLUE"));
+	windColor[16] = wxTheColourDatabase->Find(_T("ORANGE"));
+	windColor[17] = wxTheColourDatabase->Find(_T("PURPLE"));
+	windColor[18] = wxTheColourDatabase->Find(_T("GREY"));
+	windColor[19] = wxTheColourDatabase->Find(_T("FIREBRICK"));
 
 	nmea = false;
 	engineRunning = false;
@@ -53,11 +63,11 @@ Polar::Polar(PolarDialog* parent)
 	filterDlg = new FilterDlg(dlg,this);
 
 	dlg->m_choiceRingsPolar->SetSelection(1);
-	dlg->m_choiceDegreesPolar->SetSelection(0);
+	dlg->m_choiceDegreesPolar->SetSelection(1);
 
 	knots = wxAtoi(dlg->m_choiceRingsPolar->GetString(dlg->m_choiceRingsPolar->GetSelection()));
 	degrees = wxAtoi(dlg->m_choiceDegreesPolar->GetString(dlg->m_choiceDegreesPolar->GetSelection()));
-	for(int i = 4; i < 41; i += 4)
+	for(int i = 2; i < 41; i += 2)
 		dlg->m_choiceWindPolar->Append(wxString::Format(_T("%i knots"),i));
 
 
@@ -95,18 +105,21 @@ Polar::~Polar(void)
 	delete filterDlg;
 }
 
-void Polar::setValue(wxString s, int dir, int spd)
+void Polar::setValue(wxString s, int dir, int spd, bool cnt)
 {
 	s.Replace(_T(","),_T("."));
 	double speed = wxAtof(s);
 	if(speed > 0.0)
 	{
 		windsp[spd].wdirMax[dir] = speed;
-		windsp[spd].count[dir] = 1;
+		windsp[spd].wdirCur[dir] = speed;
+		if(cnt)
+			windsp[spd].count[dir] = 1;
 	}
 	else
 	{ // entry deleted
 		windsp[spd].wdirMax[dir] = -1;
+		windsp[spd].wdirCur[dir] = -1;
 		windsp[spd].count[dir] = 0;
 	}
 
@@ -140,7 +153,7 @@ void Polar::setMode(int sel)
 		}
 		dlg->m_buttonSavePolar->Enable();
 		dlg->m_button61->Disable();
-		dlg->m_buttonFilterPolar->Disable();
+		dlg->m_buttonFilterPolar->Enable();
 		dlg->m_choiceSourcePolar->Enable();
 		source(dlg->m_choiceSourcePolar->GetSelection());
 
@@ -202,9 +215,9 @@ void Polar::loadVDR()
 	wxFileDialog fdlg(dlg,_("Select a VDR-File"),_T(""));
 	if(fdlg.ShowModal() == wxID_CANCEL) return;
 
-	reset();
-	dlg->m_panelPolar->Refresh();
-	dlg->m_gridEdit->ClearGrid();
+//	reset();
+//	dlg->m_panelPolar->Refresh();
+//	dlg->m_gridEdit->ClearGrid();
 
 	nmea = false;
 	dlg->m_toggleBtnRecord->Hide();
@@ -237,46 +250,47 @@ void Polar::loadVDR()
 
 bool Polar::insert()
 {
-	double speed;
+	double speed, Vtx, Vty;
 
 	if(dlg->m_choiceSourcePolar->GetSelection() == 0)
 		speed = speedoSpeed;
 	else
 		speed = gpsSpeed;
 
-	if(windAngle >=0 && windSpeed >= 0 && (speedoSpeed > 0 || gpsSpeed > 0))
+	if(windAngle >=0 && windSpeed >= 0 && speed > 0)
 	{
+
 		int tdir = windAngle;
+
 		if(windReference == _T("R"))
-			windAngle = wxRound(atan(windSpeed*sin(windAngle*PI/180)/(windSpeed*cos(windAngle*PI/180)-speed))*180/PI); // make true wind-angle
-		if(windAngle < 0 && tdir <= 180)
-			windAngle += 180;
-		else if(windAngle < 0 && tdir > 180)
-			windAngle += 360;
-		else if(windAngle > 0 && tdir > 180)
-			windAngle += 180;
+		{
+			Vtx = windSpeed*sin(windAngle*PI/180);
+			Vty = windSpeed*cos(windAngle*PI/180)-speed;
+
+			windAngle = wxRound(atan(Vtx/Vty)*180/PI); // make true wind-angle
+			windSpeed = sqrt((Vtx*Vtx) + (Vty*Vty));   // make true windspeed
+
+			if(windAngle < 0 && tdir <= 180)
+				windAngle += 180;
+			else if(windAngle < 0 && tdir > 180)
+				windAngle += 360;
+			else if(windAngle > 0 && tdir > 180)
+				windAngle += 180;
+		}
+
+		if(windAngle > 180)
+			windAngle = 360 - windAngle;
 
 		int row = wxRound((windAngle-5)/5);
-		int col = windSpeed/4;
+		int col = windSpeed/2;
+		if(col > 0)
+			col -= 1;
 		if(row > 35)
 			row = 71 - row;
 
-		if((row >= 0 && row < 36) && (col >= 0 && col < 10))
-		{ 
-			if(!dlg->m_gridEdit->GetCellValue(row,col).IsEmpty())
-			{
-				if(wxAtof(dlg->m_gridEdit->GetCellValue(row,col)) < speed)
-				{
-					setValue(wxString::Format(_T("%.2f"),speedoSpeed),row,col);
-					dlg->m_gridEdit->SetCellValue(row,col,wxString::Format(_T("%.2f"),speed));
-				}
-
-			}
-			else if(speed > 0.0)
-			{
-				dlg->m_gridEdit->SetCellValue(row,col,wxString::Format(_T("%.2f"),speed));
-				setValue(wxString::Format(_T("%.2f"),speedoSpeed),row,col);
-			}
+		if((row >= 0 && row < 36) && (col >= 0 && col < 20))
+		{
+			CheckInsertSpeed(row, col, speed);
 
 			speedoSpeed = 0;
 			gpsSpeed = 0;
@@ -291,10 +305,67 @@ bool Polar::insert()
 	return false;
 }
 
+void Polar::CheckInsertSpeed(int row, int col, double speed)
+{
+	double max, tspeed;
+
+	if(!dlg->m_gridEdit->GetCellValue(row,col).IsEmpty())
+	{
+		if(filterDlg->m_checkBoxAverage->GetValue())
+		{
+
+			windsp[col].count[row]++;
+			windsp[col].wdirTotal[row] += speed;
+			speed = windsp[col].wdirTotal[row]/windsp[col].count[row];
+			setValue(wxString::Format(_T("%.2f"),speed),row,col,false);
+			dlg->m_gridEdit->SetCellValue(row,col,wxString::Format(_T("%.2f"),speed));
+		}
+		else if(filterDlg->m_checkBoxRangePercent->GetValue())
+		{
+			max = windsp[col].wdirMax[row];
+			if(speed > max)
+			{
+				tspeed = speed;
+				windsp[col].count[row]++;
+				windsp[col].wdirTotal[row] += speed;
+				speed = windsp[col].wdirTotal[row]/windsp[col].count[row];
+				setValue(wxString::Format(_T("%.2f"),speed),row,col,false);
+				windsp[col].wdirMax[row] = tspeed;
+				dlg->m_gridEdit->SetCellValue(row,col,wxString::Format(_T("%.2f"),speed));				
+			}
+			else
+			{
+				double percent = 100-(speed/max)*100;
+				if(percent <= wxAtof(filterDlg->m_choice6->GetString(filterDlg->m_choice6->GetSelection())))
+				{
+					windsp[col].count[row]++;
+					windsp[col].wdirTotal[row] += speed;
+					speed = windsp[col].wdirTotal[row]/windsp[col].count[row];
+					setValue(wxString::Format(_T("%.2f"),speed),row,col,false);
+					windsp[col].wdirMax[row] = max;
+					dlg->m_gridEdit->SetCellValue(row,col,wxString::Format(_T("%.2f"),speed));				
+				}
+			}
+		}
+		else if(wxAtof(dlg->m_gridEdit->GetCellValue(row,col)) < speed) //Set Maxspeed if true.
+		{
+			setValue(wxString::Format(_T("%.2f"),speed),row,col,false);
+			dlg->m_gridEdit->SetCellValue(row,col,wxString::Format(_T("%.2f"),speed));
+		}
+	}
+	else if(speed > 0.0)
+	{
+		dlg->m_gridEdit->SetCellValue(row,col,wxString::Format(_T("%.2f"),speed));
+		windsp[col].count[row]++;
+		windsp[col].wdirTotal[row] += speed;
+		setValue(wxString::Format(_T("%.2f"),speed),row,col,false);
+	}
+}
+
 void Polar::createDiagram(wxDC& dc)
 {
 	center = dlg->m_panelPolar->GetSize();
-	center.x = center.x / 2 - 150;
+	center.x = center.x / 2 - 125;
 	center.y = (center.y / 2) + (dlg->bSizerPolar->GetSize().GetHeight() / 2);
 	rSpeed[0] = center.y - dlg->bSizerPolar->GetSize().GetHeight()-40;
 	dist = rSpeed[0] / knots;
@@ -318,6 +389,73 @@ void Polar::Render()
 		dc->SetBrush( wxBrush(wxColour(0,255,0)) );
 		dc->DrawCircle( wxPoint(40,130), 5);
 		dc->DrawText(_("more than 10 entries found"), 60, 120); 
+		dc->SetBrush( wxBrush(wxColour(255,255,255)) );
+	}
+	else
+	{
+//		dc->DrawText(_("Testing, work in progress..."), 40, 60); 
+
+		dc->SetPen( wxPen( wxColor(0,0,0), 1 ) ); 
+		dc->SetBrush( wxBrush(windColor[0]) );	
+		dc->DrawCircle( wxPoint(10,90), 5);
+		dc->DrawText(_("2kts"), 20, 83); 
+		dc->SetBrush( wxBrush(windColor[1]) );
+		dc->DrawCircle( wxPoint(10,110), 5);
+		dc->DrawText(_("4kts"), 20, 103); 
+		dc->SetBrush( wxBrush(windColor[2]) );
+		dc->DrawCircle( wxPoint(10,130), 5);
+		dc->DrawText(_("6kts"), 20, 123); 
+		dc->SetBrush( wxBrush(windColor[3]) );	
+		dc->DrawCircle( wxPoint(10,150), 5);
+		dc->DrawText(_("8kts"), 20, 143); 
+		dc->SetBrush( wxBrush(windColor[4]) );
+		dc->DrawCircle( wxPoint(10,170), 5);
+		dc->DrawText(_("10kts"), 20, 163); 
+		dc->SetBrush( wxBrush(windColor[5]) );
+		dc->DrawCircle( wxPoint(10,190), 5);
+		dc->DrawText(_("12kts"), 20, 183); 
+		dc->SetBrush( wxBrush(windColor[6]) );
+		dc->DrawCircle( wxPoint(10,210), 5);
+		dc->DrawText(_("14kts"), 20, 203); 
+		dc->SetBrush( wxBrush(windColor[7]) );	
+		dc->DrawCircle( wxPoint(10,230), 5);
+		dc->DrawText(_("16kts"), 20, 223); 
+		dc->SetBrush( wxBrush(windColor[8]) );
+		dc->DrawCircle( wxPoint(10,250), 5);
+		dc->DrawText(_("18kts"), 20, 243); 
+		dc->SetBrush( wxBrush(windColor[9]) );
+		dc->DrawCircle( wxPoint(10,270), 5);
+		dc->DrawText(_("20kts"), 20, 263); 
+		dc->SetBrush( wxBrush(windColor[10]) );	
+		dc->DrawCircle( wxPoint(10,290), 5);
+		dc->DrawText(_("22kts"), 20, 283); 
+		dc->SetBrush( wxBrush(windColor[11]) );
+		dc->DrawCircle( wxPoint(10,310), 5);
+		dc->DrawText(_("24kts"), 20, 303); 
+		dc->SetBrush( wxBrush(windColor[12]) );
+		dc->DrawCircle( wxPoint(10,330), 5);
+		dc->DrawText(_("26kts"), 20, 323); 
+		dc->SetBrush( wxBrush(windColor[13]) );	
+		dc->DrawCircle( wxPoint(10,350), 5);
+		dc->DrawText(_("28kts"), 20, 343); 
+		dc->SetBrush( wxBrush(windColor[14]) );
+		dc->DrawCircle( wxPoint(10,370), 5);
+		dc->DrawText(_("30kts"), 20, 363); 
+		dc->SetBrush( wxBrush(windColor[15]) );
+		dc->DrawCircle( wxPoint(10,390), 5);
+		dc->DrawText(_("32kts"), 20, 383); 
+		dc->SetBrush( wxBrush(windColor[16]) );
+		dc->DrawCircle( wxPoint(10,410), 5);
+		dc->DrawText(_("34kts"), 20, 403); 
+		dc->SetBrush( wxBrush(windColor[17]) );	
+		dc->DrawCircle( wxPoint(10,430), 5);
+		dc->DrawText(_("36kts"), 20, 423); 
+		dc->SetBrush( wxBrush(windColor[18]) );
+		dc->DrawCircle( wxPoint(10,450), 5);
+		dc->DrawText(_("38kts"), 20, 443); 
+		dc->SetBrush( wxBrush(windColor[19]) );
+		dc->DrawCircle( wxPoint(10,470), 5);
+		dc->DrawText(_("40kts"), 20, 463); 
 		dc->SetBrush( wxBrush(wxColour(255,255,255)) );
 	}
 	int xknt, yknt;
@@ -388,6 +526,8 @@ void Polar::createPolar()
 	bool nextline = false;
 
 	reset();
+	dlg->m_panelPolar->Refresh();
+	dlg->m_gridEdit->ClearGrid();
 
 	wxProgressDialog progressRead( _("Please wait."), _T(""),
 		100 , dlg,  wxFRAME_NO_TASKBAR | wxPD_AUTO_HIDE );
@@ -521,95 +661,21 @@ void Polar::createPolar()
 
 					rel = false;
 				}
-				wsp /= 4;
-				if(wind_dir < 180)
-					wind_dir = wxRound((wind_dir-5)/5);
-				else
-					wind_dir = 71-wxRound((wind_dir-5)/5);
-					// wxMessageBox(wxString::Format(_T("windspd:%i winddir:%i speed:%.2f size:%i"), wsp, wind_dir, speed, windsp[wsp].winddir.size()));
+				wsp /= 2;
+				if(wsp > 0)
+					wsp -= 1;
+
+				if(wind_dir > 180)
+					wind_dir = 360 - wind_dir;
+
+				wind_dir = wxRound((wind_dir-5)/5);
 
                 		if(wind_dir >= 0)
 				{
-					windsp[wsp].winddir.insert(std::pair<int,double>(wind_dir,speed));
-					if(speed > windsp[wsp].wdirMax[wind_dir])
-						windsp[wsp].wdirMax[wind_dir] = speed;
+					CheckInsertSpeed(wind_dir, wsp, speed);
 				}
 			}
 		}
-	}
-
-	if(filterDlg->m_checkBoxRangePercent->GetValue())
-	{
-		for(int i = 0; i < 10; i++)
-		{
-			for(int n = 0; n < WINDDIR; n++)
-			{
-				for (it = windsp[i].winddir.begin(); it!=windsp[i].winddir.end(); ++it)
-				{
-					int wdir = (*it).first;
-					double spd = (*it).second;
-
-					if(wdir == n)
-					{
-						double percent = ((spd-windsp[i].wdirMax[n])/windsp[i].wdirMax[n])*100;
-						if(percent >= -wxAtof(filterDlg->m_choice6->GetString(filterDlg->m_choice6->GetSelection())))
-						{
-							windsp[i].count[n]++;
-							windsp[i].wdirTotal[n] += spd;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	if(filterDlg->m_checkBoxAverage->GetValue())
-	{
-		for(int i = 0; i < 10; i++)
-		{
-			for(int n = 0; n < WINDDIR; n++)
-			{
-				for (it = windsp[i].winddir.begin(); it!=windsp[i].winddir.end(); ++it)
-				{
-					int wdir = (*it).first;
-					double spd = (*it).second;
-
-					if(wdir == n)
-					{
-						windsp[i].count[n]++;
-						windsp[i].wdirTotal[n] += spd;
-					}
-				}
-			}
-		}
-	}
-
-    if(filterDlg->m_checkBoxMax->GetValue())
-    {
-        for(int i = 0; i < 10; i++)
-        {
-            for(int n = 0; n < WINDDIR; n++)
-            {
-                if(windsp[i].wdirMax[n] > 0)
-                {
-                    windsp[i].count[n]++;
-                    windsp[i].wdirTotal[n] = windsp[i].wdirMax[n];
-                }
-            }
-        }
-    }
-
-	for(int i = 0; i < 10; i++)
-	{
-		for(int n = 0; n < WINDDIR; n++)
-		{
-			if(windsp[i].count[n] > 0)
-			{
-				windsp[i].wdirTotal[n] /= windsp[i].count[n];
-                		dlg->m_gridEdit->SetCellValue(n,i,wxString::Format(_T("%.2f"),windsp[i].wdirTotal[n]));
-            		}
-		}
-
 	}
 
 	dlg->m_panelPolar->Refresh();
@@ -619,7 +685,7 @@ void Polar::createPolar()
 void Polar::createSpeedBullets()
 {
 	int sel = dlg->m_choiceWindPolar->GetSelection();
-	if(sel == 11) { createSpeedBulletsMax(); return; }
+	if(sel == 21) { createSpeedBulletsMax(); return; }
 
 	int radius = 5;
 	double length = dist;												
@@ -631,7 +697,7 @@ void Polar::createSpeedBullets()
 	if(sel != 0) 
 		{ sel -= 1; end = sel+1; }
 	else
-		{ sel = 0; end = 10; }
+		{ sel = 0; end = 20; }
 
 	int linelength;
 	wxColour colour,brush;
@@ -647,14 +713,11 @@ void Polar::createSpeedBullets()
 			if(mode == 0)
 			{
 				if(windsp[wsp].count[dir] < 3)
-					//dc->SetBrush( wxBrush(wxColour(255,0,0)) );	// set bulletcolor for logbook-mode
-					brush = wxColour(255,0,0);
+					brush = wxColour(255,0,0);			// set bulletcolor for logbook-mode
 				else if( windsp[wsp].count[dir]  >= 3 && windsp[wsp].count[dir] < 5)
-					//dc->SetBrush( wxBrush(wxColour(255,255,0)) );	
 					brush = wxColour(255,255,0);
 				else
 					brush = wxColour(0,255,0);
-					//dc->SetBrush( wxBrush(wxColour(0,255,0)) );
 			}
 			else
 				dc->SetBrush( brush );
@@ -662,15 +725,13 @@ void Polar::createSpeedBullets()
 			switch(mode)
 			{
 			case 0:
-				if(filterDlg->m_checkBoxMax->GetValue())
-					linelength = windsp[wsp].wdirMax[dir]*length;
-				else
-					linelength = windsp[wsp].wdirTotal[dir]*length;	// calculate distance from centerpoint for speed
-				break;
 			case 1:
 			case 2:
 			case 3:
-				linelength = (windsp[wsp].wdirMax[dir])*length;
+				if(filterDlg->m_checkBoxMax->GetValue())
+					linelength = windsp[wsp].wdirMax[dir]*length;
+				else
+					linelength = windsp[wsp].wdirMax[dir]*length;	// calculate distance from centerpoint for speed
 				break;
 			}
 			xt = wxRound(cos(toRad(dir*5+5))*linelength+center.x);		// calculate the point for the bullet
@@ -708,7 +769,7 @@ void Polar::createSpeedBulletsMax()
 	int radius = 5;
 	double length = dist;												
 	dc->SetPen( wxPen( wxColor(0,0,0), 1 ) ); 
-	int end = 10;
+	int end = 20;
 	int xt, yt, pc;
 	wxPoint ptArr[360];
 	pol temp[1];
@@ -719,6 +780,7 @@ void Polar::createSpeedBulletsMax()
 			temp[0].count[n] = 0;
 			temp[0].scount[n] = 0;
 			temp[0].wdirMax[n] = 0;
+			temp[0].wdirCur[n] = 0;
 			temp[0].wdirTotal[n] = 0;
 			temp[0].winddir.clear();
 		}
@@ -726,7 +788,7 @@ void Polar::createSpeedBulletsMax()
 	int linelength;
 	wxColour colour,brush;
 	wxPen p = dc->GetPen();								// get actual Pen for restoring later
-	for(int wsp = 0; wsp < end; wsp++)						// go thru all winddirection-structures depending on choiocebox max. all
+	for(int wsp = 0; wsp < end; wsp++)						// go thru all winddirection-structures depending on choicebox max. all
 	{
 		for(int dir = 0; dir < WINDDIR; dir++)
 		{
@@ -747,7 +809,7 @@ void Polar::createSpeedBulletsMax()
 
 
 
-	for(int wsp = 0; wsp < end; wsp++)						// go thru all winddirection-structures depending on choiocebox degrees
+	for(int wsp = 0; wsp < end; wsp++)						// go thru all winddirection-structures depending on choicebox degrees
 	{
 		pc = 0;
 		colour = windColor[wsp]; brush = windColor[wsp];
@@ -756,7 +818,7 @@ void Polar::createSpeedBulletsMax()
 			switch(mode)
 			{
 			case 0:
-				linelength = temp[0].wdirTotal[dir]*length;		// calculate distance from centerpoint for speed
+				linelength = temp[0].wdirMax[dir]*length;		// calculate distance from centerpoint for speed
 				break;
 			case 1:
 			case 2:
@@ -801,7 +863,7 @@ double Polar::toRad(int angle)
 
 void Polar::reset()
 {
-	for(int i = 0; i < 10; i++)
+	for(int i = 0; i < 20; i++)
 	{
 		for(int n = 0; n < WINDDIR; n++)
 		{
@@ -809,10 +871,16 @@ void Polar::reset()
 			windsp[i].count[n] = 0;
 			windsp[i].scount[n] = 0;
 			windsp[i].wdirMax[n] = 0;
+			windsp[i].wdirCur[n] = 0;
 			windsp[i].wdirTotal[n] = 0;
 			windsp[i].winddir.clear();
 		}
 	}
+
+	windSpeed = -1;
+	windAngle = -1;
+	speedoSpeed = 0;
+	gpsSpeed = 0;
 }
 
 void Polar::save()
@@ -834,12 +902,12 @@ void Polar::save()
 	else if(sel != 3 && !saveFile.EndsWith(_T(".pol")))
 	  saveFile += _T(".pol");
 	
-	struct pol save[10];
-	for(int i = 0; i < 10; i++)	
+	struct pol save[20];
+	for(int i = 0; i < 20; i++)	
 		save[i] = windsp[i];
 
 	int end = WINDDIR/2;
-	for(int sp = 0; sp < 10; sp++)
+	for(int sp = 0; sp < 20; sp++)
 	{
 		for(int dir = 0; dir < end; dir++)
 		{
@@ -869,7 +937,7 @@ void Polar::save()
 	{
 		for(int sp = 0; sp < 10; sp++)
 		{
-			polarFile << (sp+1)*4 << _T(" ");
+			polarFile << (sp+1)*2 << _T(" ");
 			for(int dir = 0; dir < end; dir++)
 			{
 				data = -1;
@@ -899,8 +967,8 @@ void Polar::save()
 	if(sel == 0 || sel == 1) // Both OCPN and QTVlm are the same format
 	{
 		polarFile << _T("TWA\\TWS;");
-		for(int i = 0 ; i < 11; i++)
-			polarFile << wxString::Format(_T("%i;"),i*4);
+		for(int i = 0 ; i < 21; i++)
+			polarFile << wxString::Format(_T("%i;"),i*2);
 		polarFile << _T("60\n");
 
 		for(int dir = -1; dir < end; dir++)
@@ -908,20 +976,18 @@ void Polar::save()
 			if(dir == -1)
 			{
 				polarFile << _T("0;");
-				for(int z = 0; z < 11; z++)
+				for(int z = 0; z < 21; z++)
 					polarFile << _T("0.00;");
 				polarFile << _T("0\n");
 				continue;
 			}
 			polarFile << 5+(dir*5) << _T(";");
-			for(int sp = 0; sp < 10; sp++)
+			for(int sp = 0; sp < 20; sp++)
 			{
 				data = -1;
 				switch(mode)
 				{
 				case 0:
-					data = save[sp].wdirTotal[dir];
-					break;
 				case 1:
 				case 2:
 				case 3:
@@ -942,8 +1008,8 @@ void Polar::save()
 	else if(sel == 2)
 	{
 		polarFile << _T("TWA\\TWS,");
-		for(int i = 0 ; i < 11; i++)
-			polarFile << wxString::Format(_T("%i,"),i*4);
+		for(int i = 0 ; i < 21; i++)
+			polarFile << wxString::Format(_T("%i,"),i*2);
 		polarFile << _T("\n");
 
 		for(int dir = -1; dir < end; dir++)
@@ -951,13 +1017,13 @@ void Polar::save()
 			if(dir == -1)
 			{
 				polarFile << _T("0,");
-				for(int z = 0; z < 11; z++)
+				for(int z = 0; z < 21; z++)
 					polarFile << _T("0.0,");
 				polarFile << _T("0\n");
 				continue;
 			}
 			polarFile << 5+(dir*5) << _T(",");
-			for(int sp = 0; sp < 10; sp++)
+			for(int sp = 0; sp < 20; sp++)
 			{
 				data = -1;
 				switch(mode)
@@ -1003,7 +1069,7 @@ void Polar::save()
 	}
 	output.Close();
 
-	for(int sp = 0; sp < 10; sp++)	
+	for(int sp = 0; sp < 20; sp++)	
 		windsp[sp] = save[sp];
 	dlg->m_panelPolar->Refresh();
 }
@@ -1046,58 +1112,35 @@ void Polar::loadPolar()
 
 	wxFileInputStream stream( fdlg.GetPath() );							
 	wxTextInputStream in(stream);	
-	wxString wdirstr,wsp;
+	wxString wdirstr, wsp;
 
 	bool first = true;
 	int mode = -1, row = -1, sep = -1;
-	int ocpnCol = 0;
+	wxArrayString WS, WSS;
+
 	while(!stream.Eof())
 	{
 		wxString str = in.ReadLine();				// read line by line
 		if(stream.Eof()) break;
 		if(first)
 		{
-			if(str.Contains(_T("TWA\\TWS")))
+			WS = wxStringTokenize(str,_T(";,\t "));
+			WS[0] = WS[0].Upper(); 
+			if(WS[0].Find(_T("TWA\\TWS")) != -1 || WS[0].Find(_T("TWA/TWS")) != -1 || WS[0].Find(_T("TWA")) != -1)
 			{
 				mode = 1;
-				if(str.GetChar(7) == ';')
-					sep = 1;
-				else if(str.GetChar(7) == ',')
-					sep = 2;
-				else if(str.GetChar(7) == '\t')
-					sep = 3;
-				else if(str.GetChar(7) == ' ')
-					sep = 0;
+				sep = 1;
 			}
-			else if (str.Contains(_T("TWA")))
+			else if(!WS[0].IsNumber())
 			{
-				mode = 2;
-				if(str.GetChar(3) == ';')
-					sep = 1;
-				else if(str.GetChar(3) == ',')
-					sep = 2;
-				else if(str.GetChar(3) == '\t')
-					sep = 3;
-				else if(str.GetChar(3) == ' ')
-					sep = 0;
-			}
-			else if(str.GetChar(0) == '4')
-			{
-				mode = 0;
-				if(str.GetChar(1) == ';')
-					sep = 1;
-				else if(str.GetChar(1) == ',')
-					sep = 2;
-				else if(str.GetChar(1) == '\t')
-					sep = 3;
-				else if(str.GetChar(1) == ' ')
-					sep = 0;
+				continue;
 			}
 			else
 			{
 				wxMessageBox(_T("Cannot load this file"));
 				return;
 			}
+
 			if( sep == -1)
 			{
 				wxMessageBox(_T("Format in this file not recognised"));
@@ -1109,78 +1152,37 @@ void Polar::loadPolar()
 				continue;
 		}
 
-		wxStringTokenizer tkz;
-		switch(sep)
-		{
-			case 0:
-				{
-				wxStringTokenizer tk(str,_T(" "),wxTOKEN_RET_EMPTY);
-				tkz = tk;
-				}
-				break;
-			case 1:
-				{
-				wxStringTokenizer tk(str,_T(";"),wxTOKEN_RET_EMPTY);
-				tkz = tk;
-				}
-				break;
-			case 2:
-				{
-				wxStringTokenizer tk(str,_T(","),wxTOKEN_RET_EMPTY);	
-				tkz = tk;
-				}
-				break;
-			case 3:
-				{
-				wxStringTokenizer tk(str,_T("\t"),wxTOKEN_RET_EMPTY);	
-				tkz = tk;
-				}
-				break;
-		}
-
-		wxString u = tkz.GetNextToken();
-		if(u == _T("0") && (mode == 1 || mode == 2)) 
+		WSS = wxStringTokenize(str,_T(";,\t "));
+		if(WSS[0] == _T("0") && mode == 1) 
 			{ row++; continue; }
 		else if(row == -1)
 			row++;
 		
+		int col = 0, i = 0, x = 0; 
+		wxString s;
 
-		if(mode == 1 || mode == 2)
+		x = wxAtoi(WSS[0]);
+		row = (x + 2) / 5 - 1;
+
+		for (i = 1; i < WSS.GetCount(); i++)
 		{
-			int col = 0, i = 0, x = 0; 
-			wxString s;
-			x = wxAtoi(u);
-			row = (x + 2) / 5 - 1;
-
-			while(tkz.HasMoreTokens())
+			s = WSS[i];
+			if(col > 19) break;
+			if(s == _T("0") || s == _T("0.00") || s == _T("0.0") || s == _T("0.000")) 
 			{
-				i++;
-				if(i > 11) break;
-				s = tkz.GetNextToken();
-				if(s == _T("0") || s == _T("0.00") || s == _T("0.0")) continue;
-				dlg->m_gridEdit->SetCellValue(row,col,s);
-				setValue(s,row,col++);
+				continue;
 			}
-		}
-		else
-		{
-			wxString s; int ocpnRow = 0;
-			while(tkz.HasMoreTokens())
+			x = wxAtoi(WS[i]);
+			if( (x % 2) == 0)
 			{
-				//if(ocpnCol > 10) break;
-				tkz.GetNextToken();
-				s = tkz.GetNextToken();
-				if(s.GetChar(0) != ' ' && !s.IsEmpty())
+				col = x/2 - 1;
+				if(col < 21)
 				{
-					dlg->m_gridEdit->SetCellValue(ocpnRow,ocpnCol,s);
-					setValue(s,ocpnRow,ocpnCol);
+					dlg->m_gridEdit->SetCellValue(row,col,s);
+					setValue(s,row,col++,true);
 				}
-				ocpnRow++;
 			}
-			ocpnCol++;
 		}
-		
-		row++;
 	}
 	dlg->m_panelPolar->Refresh();
 }
@@ -1409,6 +1411,9 @@ FilterDlg::FilterDlg( PolarDialog* parent, Polar* polar, wxWindowID id, const wx
 	// Connect Events
 //	this->Connect( wxEVT_INIT_DIALOG, wxInitDialogEventHandler( FilterDlg::init ) );
 	m_sdbSizer11OK->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FilterDlg::OnOKButtonClick ), NULL, this );
+	m_checkBoxMax->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( FilterDlg::OnMaxButtonClick ), NULL, this );
+	m_checkBoxAverage->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( FilterDlg::OnAverageButtonClick ), NULL, this );
+	m_checkBoxRangePercent->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( FilterDlg::OnRangeButtonClick ), NULL, this );
 	init();
 }
 
@@ -1417,6 +1422,9 @@ FilterDlg::~FilterDlg()
 	// Disconnect Events
 //	this->Disconnect( wxEVT_INIT_DIALOG, wxInitDialogEventHandler( FilterDlg::PolarDlgOnInitDialog ) );
 	m_sdbSizer11OK->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FilterDlg::OnOKButtonClick ), NULL, this );
+	m_checkBoxMax->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( FilterDlg::OnMaxButtonClick ), NULL, this );
+	m_checkBoxAverage->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( FilterDlg::OnAverageButtonClick ), NULL, this );
+	m_checkBoxRangePercent->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( FilterDlg::OnRangeButtonClick ), NULL, this );
 	
 }
 void FilterDlg::init()
@@ -1534,6 +1542,48 @@ void FilterDlg::OnOKButtonClick( wxCommandEvent& event )
 	if( GetParent() )
         	GetParent()->Raise();
 #endif
+}
+
+void FilterDlg::OnMaxButtonClick( wxCommandEvent& event )
+{
+	if(event.IsChecked())
+	{
+		m_checkBoxAverage->SetValue(false);
+		m_checkBoxRangePercent->SetValue(false);
+	}
+	else
+	{
+		m_checkBoxAverage->SetValue(true);
+		m_checkBoxRangePercent->SetValue(false);
+	}
+}
+
+void FilterDlg::OnAverageButtonClick( wxCommandEvent& event )
+{
+	if(event.IsChecked())
+	{
+		m_checkBoxMax->SetValue(false);
+		m_checkBoxRangePercent->SetValue(false);
+	}
+	else
+	{
+		m_checkBoxMax->SetValue(true);
+		m_checkBoxRangePercent->SetValue(false);
+	}
+}
+
+void FilterDlg::OnRangeButtonClick( wxCommandEvent& event )
+{
+	if(event.IsChecked())
+	{
+		m_checkBoxMax->SetValue(false);
+		m_checkBoxAverage->SetValue(false);
+	}
+	else
+	{
+		m_checkBoxMax->SetValue(true);
+		m_checkBoxAverage->SetValue(false);
+	}
 }
 
 ///////////////////////////// Collect Dialog ///////////////////////////////////
