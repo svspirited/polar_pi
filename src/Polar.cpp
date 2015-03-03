@@ -482,7 +482,7 @@ void Polar::Render()
 	}
 
 	int angle;
-	if(degrees == 8) { angle = 24; } else { angle = 20; }
+	if(degrees == 5) { angle = 5; } else if(degrees == 10) { angle = 10; } else { angle = 15; }
 	for(; angle <= 180; angle += degrees)
 	{
 		int xt = wxRound(cos((PI/180.0)*(angle-90))*(rSpeed[(int)knots-1]+20)+center.x);
@@ -611,15 +611,15 @@ void Polar::createPolar()
 						if(s.Trim(false).IsEmpty())
 						{ nextline = true; break; }
 						s.Replace(_T("\n"),_T(","));
-						wxStringTokenizer tkz(s,_T(","));
-						if(tkz.CountTokens() != sails.GetCount())
+						wxStringTokenizer tkz1(s,_T(","));
+						if(tkz1.CountTokens() != sails.GetCount())
 						  { nextline = true; break; }
 						else
 						{
 							unsigned int ok = 0;
-							while(tkz.HasMoreTokens())
+							while(tkz1.HasMoreTokens())
 							{
-								wxString t = tkz.GetNextToken().Trim(false);
+								wxString t = tkz1.GetNextToken().Trim(false);
 								t = t.Trim();
 								for(unsigned int i = 0; i < sails.GetCount(); i++)
 								{
@@ -1137,13 +1137,13 @@ void Polar::loadPolar()
 			}
 			else
 			{
-				wxMessageBox(_T("Cannot load this file"));
+				wxMessageBox(_("Cannot load this file"));
 				return;
 			}
 
 			if( sep == -1)
 			{
-				wxMessageBox(_T("Format in this file not recognised"));
+				wxMessageBox(_("Format in this file not recognised"));
 				return;
 			}
 

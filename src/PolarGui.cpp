@@ -76,7 +76,7 @@ PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText145->Wrap( -1 );
 	bSizer14->Add( m_staticText145, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
-	wxString m_choiceDegreesPolarChoices[] = { _T("8"), _T("10"), _T("15") };
+	wxString m_choiceDegreesPolarChoices[] = { _T("5"), _T("10"), _T("15") };
 	int m_choiceDegreesPolarNChoices = sizeof( m_choiceDegreesPolarChoices ) / sizeof( wxString );
 	m_choiceDegreesPolar = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceDegreesPolarNChoices, m_choiceDegreesPolarChoices, 0 );
 	m_choiceDegreesPolar->SetSelection( 0 );
