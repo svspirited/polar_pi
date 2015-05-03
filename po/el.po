@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-02 21:07-0600\n"
-"PO-Revision-Date: 2015-03-02 22:14-0500\n"
+"POT-Creation-Date: 2015-05-03 14:01-0500\n"
+"PO-Revision-Date: 2015-05-03 15:02-0400\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Greek\n"
 "Language: el_GR\n"
@@ -13,6 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: el\n"
 "X-Crowdin-File: /plugins/polar_pi/po/polar_pi.pot\n"
 
 #: src/polar_pi.cpp:120 src/polar_pi.cpp:182 src/polar_pi.cpp:208
@@ -350,6 +351,14 @@ msgstr ""
 
 #: src/Polar.cpp:1103
 msgid "Select a Polar-File"
+msgstr ""
+
+#: src/Polar.cpp:1140
+msgid "Cannot load this file"
+msgstr ""
+
+#: src/Polar.cpp:1146
+msgid "Format in this file not recognised"
 msgstr ""
 
 #: src/Polar.cpp:1313

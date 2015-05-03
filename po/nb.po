@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-02 21:07-0600\n"
-"PO-Revision-Date: 2015-03-02 22:14-0500\n"
+"POT-Creation-Date: 2015-05-03 14:01-0500\n"
+"PO-Revision-Date: 2015-05-03 15:02-0400\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb_NO\n"
@@ -13,6 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: nb\n"
 "X-Crowdin-File: /plugins/polar_pi/po/polar_pi.pot\n"
 
 #: src/polar_pi.cpp:120 src/polar_pi.cpp:182 src/polar_pi.cpp:208
@@ -130,91 +131,91 @@ msgstr ""
 
 #: src/Options.cpp:74
 msgid "Jib"
-msgstr ""
+msgstr "Jib"
 
 #: src/Options.cpp:75
 msgid "Mizzen"
-msgstr ""
+msgstr "Mesan"
 
 #: src/Options.cpp:76
 msgid "Mizzen Storm"
-msgstr ""
+msgstr "Mesan Storm"
 
 #: src/Options.cpp:77
 msgid "Staysail"
-msgstr ""
+msgstr "Stagseil"
 
 #: src/Options.cpp:78
 msgid "Spinnacker"
-msgstr ""
+msgstr "Spinnaker"
 
 #: src/Options.cpp:79
 msgid "You can change the abbreviations and the names of the sails\nin Options/Miscellaneous/Sails(Logbook)"
-msgstr ""
+msgstr "Du kan endre forkortelsene og navn på seilene\ni Alternativer/Diverse/Seil(Loggbok)"
 
 #: src/Options.cpp:143
 msgid "'"
-msgstr ""
+msgstr "'"
 
 #: src/Options.cpp:144
 msgid "\""
-msgstr ""
+msgstr "\""
 
 #: src/Options.cpp:146
 msgid "NM"
-msgstr ""
+msgstr "NM"
 
 #: src/Options.cpp:147 src/Options.cpp:156 src/Polar.cpp:1474
 msgid "kts"
-msgstr ""
+msgstr "kn"
 
 #: src/Options.cpp:149
 msgid "m"
-msgstr ""
+msgstr "m"
 
 #: src/Options.cpp:150
 msgid "ft"
-msgstr ""
+msgstr "ft"
 
 #: src/Options.cpp:151
 msgid "fth"
-msgstr ""
+msgstr "fa"
 
 #: src/Options.cpp:154
 msgid "mb"
-msgstr ""
+msgstr "mb"
 
 #: src/Options.cpp:155
 msgid "F"
-msgstr ""
+msgstr "F"
 
 #: src/Options.cpp:157
 msgid "m/s"
-msgstr ""
+msgstr "m/s"
 
 #: src/Options.cpp:158
 msgid "km/h"
-msgstr ""
+msgstr "km/t"
 
 #: src/Options.cpp:161
 msgid "gal"
-msgstr ""
+msgstr "gal"
 
 #: src/Options.cpp:162
 msgid "h"
-msgstr ""
+msgstr "t"
 
 #: src/Options.cpp:163
 msgid "E"
-msgstr ""
+msgstr "Ø"
 
 #: src/Options.cpp:168
 msgid "day(s)"
-msgstr ""
+msgstr "dag(er)"
 
 #: src/Options.cpp:169
 msgid "week(s)"
-msgstr ""
+msgstr "uke(r)"
 
 #: src/Options.cpp:170
 msgid "month"
@@ -306,55 +307,63 @@ msgstr ""
 
 #: src/Polar.cpp:437
 msgid "26kts"
-msgstr ""
+msgstr "26kn"
 
 #: src/Polar.cpp:440
 msgid "28kts"
-msgstr ""
+msgstr "28kn"
 
 #: src/Polar.cpp:443
 msgid "30kts"
-msgstr ""
+msgstr "30kn"
 
 #: src/Polar.cpp:446
 msgid "32kts"
-msgstr ""
+msgstr "32kn"
 
 #: src/Polar.cpp:449
 msgid "34kts"
-msgstr ""
+msgstr "34kn"
 
 #: src/Polar.cpp:452
 msgid "36kts"
-msgstr ""
+msgstr "36kn"
 
 #: src/Polar.cpp:455
 msgid "38kts"
-msgstr ""
+msgstr "38kn"
 
 #: src/Polar.cpp:458
 msgid "40kts"
-msgstr ""
+msgstr "40kn"
 
 #: src/Polar.cpp:501
 msgid "Filtered by:"
-msgstr ""
+msgstr "Filtrert etter:"
 
 #: src/Polar.cpp:539
 msgid "Collecting: "
-msgstr ""
+msgstr "Samler: "
 
 #: src/Polar.cpp:890
 msgid "Save Polar File"
-msgstr ""
+msgstr "Lagre polarfil"
 
 #: src/Polar.cpp:1103
 msgid "Select a Polar-File"
+msgstr "Velg en polarfil"
+
+#: src/Polar.cpp:1140
+msgid "Cannot load this file"
+msgstr ""
+
+#: src/Polar.cpp:1146
+msgid "Format in this file not recognised"
 msgstr ""
 
 #: src/Polar.cpp:1313
 msgid "Use Max-Speed only"
-msgstr ""
+msgstr "Bruk kun maksfart"
 
 #: src/Polar.cpp:1320
 msgid "Use Average from all speed-data"
@@ -370,27 +379,27 @@ msgstr ""
 
 #: src/Polar.cpp:1344
 msgid "Range"
-msgstr ""
+msgstr "Rekkevidde"
 
 #: src/Polar.cpp:1366
 msgid "Sails"
-msgstr ""
+msgstr "Seil"
 
 #: src/Polar.cpp:1377
 msgid "MyLabel"
-msgstr ""
+msgstr "MinMerkelapp"
 
 #: src/Polar.cpp:1391
 msgid "Wavehight"
-msgstr ""
+msgstr "Bølgehøyde"
 
 #: src/Polar.cpp:1466 src/PolarGui.cpp:87
 msgid "Wind:"
-msgstr ""
+msgstr "Vind:"
 
 #: src/Polar.cpp:1481
 msgid "Wavehight from"
-msgstr ""
+msgstr "Bølgehøyde fra"
 
 #: src/Polar.cpp:1486 src/Polar.cpp:1499 src/PolarGui.cpp:91
 #: src/PolarGui.cpp:118
@@ -399,23 +408,23 @@ msgstr ""
 
 #: src/Polar.cpp:1494
 msgid "to"
-msgstr ""
+msgstr "til"
 
 #: src/Polar.cpp:1601
 msgid "Collecting Data from: "
-msgstr ""
+msgstr "Samler data fra: "
 
 #: src/PolarDialog.cpp:38
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: src/PolarDialog.cpp:38
 msgid "Stop"
-msgstr ""
+msgstr "Stopp"
 
 #: src/PolarDialog.cpp:40
 msgid "Record "
-msgstr ""
+msgstr "Ta opp "
 
 #: src/PolarDialog.cpp:167
 msgid "The plugin logbookkonni isn't installed\n\nIt's needed to collect wind/speed-data from all available logbooks\n\nThe create-button is hidden and the mode isn't useable"
@@ -423,47 +432,47 @@ msgstr ""
 
 #: src/PolarGui.h:99
 msgid "Polar Diagram"
-msgstr ""
+msgstr "Polardiagram"
 
 #: src/PolarGui.cpp:28
 msgid "Mode:"
-msgstr ""
+msgstr "Modus:"
 
 #: src/PolarGui.cpp:32
 msgid "Data from Logbooks"
-msgstr ""
+msgstr "Data fra loggbøker"
 
 #: src/PolarGui.cpp:32
 msgid "Data from NMEA"
-msgstr ""
+msgstr "Data fra NMEA"
 
 #: src/PolarGui.cpp:32
 msgid "Data from File"
-msgstr ""
+msgstr "Data fra fil"
 
 #: src/PolarGui.cpp:32
 msgid "Edit manual"
-msgstr ""
+msgstr "Rediger manual"
 
 #: src/PolarGui.cpp:38
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: src/PolarGui.cpp:44
 msgid "Create"
-msgstr ""
+msgstr "Opprett"
 
 #: src/PolarGui.cpp:55
 msgid "Save"
-msgstr ""
+msgstr "Lagre"
 
 #: src/PolarGui.cpp:58
 msgid "Load"
-msgstr ""
+msgstr "Last inn"
 
 #: src/PolarGui.cpp:63
 msgid "Rings:"
-msgstr ""
+msgstr "Ringer:"
 
 #: src/PolarGui.cpp:71
 msgid "Set diagramm to x knots"
