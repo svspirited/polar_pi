@@ -79,7 +79,6 @@ polar_pi::polar_pi(void *ppimgr)
 
 polar_pi::~polar_pi(void)
 {
-      delete _img_Polar_pi;
       delete _img_Polar;
 }
 
@@ -174,7 +173,7 @@ int polar_pi::GetPlugInVersionMinor()
 
 wxBitmap *polar_pi::GetPlugInBitmap()
 {
-      return _img_Polar_pi;
+      return _img_Polar;
 }
 
 wxString polar_pi::GetCommonName()
@@ -204,7 +203,7 @@ void polar_pi::SetDefaults(void)
       {
             m_bPolarShowIcon = true;
 
-            m_leftclick_tool_id  = InsertPlugInTool(_T(""), _img_Polar, _img_Polar, wxITEM_NORMAL,
+            m_leftclick_tool_id  = InsertPlugInTool(_T(""), _img_Polar, _img_Polar, wxITEM_CHECK,
                   _("Polar"), _T(""), NULL,
                    POLAR_TOOL_POSITION, 0, this);
       }

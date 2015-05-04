@@ -687,9 +687,9 @@ void Polar::createSpeedBullets()
 	int sel = dlg->m_choiceWindPolar->GetSelection();
 	if(sel == 21) { createSpeedBulletsMax(); return; }
 
-	int radius = 5;
+	int radius = 3;
 	double length = dist;												
-	dc->SetPen( wxPen( wxColor(0,0,0), 1 ) ); 
+	dc->SetPen( wxPen( wxColor(0,0,0), 2 ) ); 
 	int end;;
 	int xt, yt, pc;
 	wxPoint ptArr[360];
@@ -743,7 +743,7 @@ void Polar::createSpeedBullets()
 
 		if(pc > 2)								//Draw splines, needs min. 3 points
 		{
-			dc->SetPen(wxPen(colour,3));
+			dc->SetPen(wxPen(colour,2));
 			dc->DrawSpline(pc,ptArr);
 		}
 
@@ -766,9 +766,9 @@ void Polar::createSpeedBullets()
 
 void Polar::createSpeedBulletsMax()
 {
-	int radius = 5;
+	int radius = 3;
 	double length = dist;												
-	dc->SetPen( wxPen( wxColor(0,0,0), 1 ) ); 
+	dc->SetPen( wxPen( wxColor(0,0,0), 2 ) ); 
 	int end = 20;
 	int xt, yt, pc;
 	wxPoint ptArr[360];
@@ -837,7 +837,7 @@ void Polar::createSpeedBulletsMax()
 		colour = windColor[GREEN]; brush = windColor[GREEN];
 		if(pc > 2)								//Draw splines, needs min. 3 points
 		{
-			dc->SetPen(wxPen(colour,3));
+			dc->SetPen(wxPen(colour,2));
 			dc->DrawSpline(pc,ptArr);
 		}
 
@@ -886,9 +886,11 @@ void Polar::reset()
 void Polar::save()
 {
 	double data;
+	wxString tempstring;
+	int count;
 
 	wxFileDialog saveFileDialog(dlg, _("Save Polar File"), _T(""), _T("Polar"),
-		_T("OCPN-Format(*.pol)|*.pol|QTVlm(*.pol)|*.pol|Maxsea(*.pol)|*.pol|CVS-Format(*csv)|*.csv"), 
+		_T("OCPN/QTVlm-Format(*.pol)|*.pol|Expedition-Format(*.pol)|*.pol|Maxsea-Format(*.pol)|*.pol|CVS-Format(*csv)|*.csv"), 
 		wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
 
 	if (saveFileDialog.ShowModal() == wxID_CANCEL)
@@ -932,39 +934,7 @@ void Polar::save()
 	wxFileOutputStream output( saveFile);
 	wxTextOutputStream polarFile(output);
 
-/* Original OCPN file format
-	if(sel == 0)
-	{
-		for(int sp = 0; sp < 10; sp++)
-		{
-			polarFile << (sp+1)*2 << _T(" ");
-			for(int dir = 0; dir < end; dir++)
-			{
-				data = -1;
-				switch(mode)
-				{
-				case 0:
-					data = save[sp].wdirTotal[dir];
-					break;
-				case 1:
-				case 2:
-				case 3:
-					data = save[sp].wdirMax[dir];
-					break;
-				}
-				  polarFile << (dir+1)*5 << _T(" ");
-				  if(save[sp].count[dir] > 0 && data >= 0.0)
-					  polarFile << wxString::Format(_T("%.2f "),data);
-				  else
-					polarFile << _T(" ");
-				
-			}
-			polarFile << _T("\n");
-		}
-	}
-	else if(sel == 1) */ // End of original OCPN file format
-
-	if(sel == 0 || sel == 1) // Both OCPN and QTVlm are the same format
+	if(sel == 0 ) // Both OCPN and QTVlm are the same format
 	{
 		polarFile << _T("TWA\\TWS;");
 		for(int i = 0 ; i < 21; i++)
@@ -1005,7 +975,39 @@ void Polar::save()
 			polarFile << _T("0\n");
 		}
 	}
-	else if(sel == 2)
+	else if(sel == 1) // Expedition Format
+	{
+		for(int sp = 0; sp < 20; sp++)
+		{
+			count = 0;
+			tempstring << (sp+1)*2 << _T(" ");
+			for(int dir = 0; dir < end; dir++)
+			{
+				data = -1;
+				switch(mode)
+				{
+				case 1:
+					data = save[sp].wdirTotal[dir];
+					break;
+				case 0:
+				case 2:
+				case 3:
+					data = save[sp].wdirMax[dir];
+					break;
+				}
+				  if(save[sp].count[dir] > 0 && data >= 0.0) {
+				  		tempstring << (dir+1)*5 << _T(" ");
+					  	tempstring << wxString::Format(_T("%.2f "),data);
+						count++;
+				  }				
+			}
+			if (count > 2)
+				polarFile << tempstring << _T("\n");
+
+			tempstring = wxEmptyString;
+		}
+	}
+	else if(sel == 2) // MAXSea Format
 	{
 		polarFile << _T("TWA\\TWS,");
 		for(int i = 0 ; i < 21; i++)
@@ -1048,7 +1050,7 @@ void Polar::save()
 			polarFile << _T("\n");
 		}
 	}
-	else
+	else // CSV Format
 	{
 	  wxString s = _T("TWA\\TWS,");	  
 	  for(int col = 0; col < dlg->m_gridEdit->GetCols(); col++)
@@ -1120,6 +1122,9 @@ void Polar::loadPolar()
 
 	while(!stream.Eof())
 	{
+		int col = 0, i = 0, x = 0; 
+		wxString s;
+
 		wxString str = in.ReadLine();				// read line by line
 		if(stream.Eof()) break;
 		if(first)
@@ -1131,14 +1136,32 @@ void Polar::loadPolar()
 				mode = 1;
 				sep = 1;
 			}
+			else if(WS[0].IsNumber())
+			{
+				mode = 2;
+				sep = 1;
+				x = wxAtoi(WS[0]);
+				col = (x + 1)/2 - 1;
+				for (i = 1; i < WS.GetCount(); i += 2 )
+				{
+					x = wxAtoi(WS[i]);
+					row = (x + 2) / 5 - 1;
+					s = WS[i+1];
+					if(col > 19) break;
+					if(s == _T("0") || s == _T("0.00") || s == _T("0.0") || s == _T("0.000")) 
+					{
+						continue;
+					}
+					if(col < 21)
+					{
+						dlg->m_gridEdit->SetCellValue(row,col,s);
+						setValue(s,row,col,true);
+					}
+				}
+			}
 			else if(!WS[0].IsNumber())
 			{
 				continue;
-			}
-			else
-			{
-				wxMessageBox(_("Cannot load this file"));
-				return;
 			}
 
 			if( sep == -1)
@@ -1152,15 +1175,14 @@ void Polar::loadPolar()
 				continue;
 		}
 
+		if ( mode == 1 ) // Formats OCPN/QTVlm/MAXSea/CVS 
+		{
 		WSS = wxStringTokenize(str,_T(";,\t "));
 		if(WSS[0] == _T("0") && mode == 1) 
 			{ row++; continue; }
 		else if(row == -1)
 			row++;
 		
-		int col = 0, i = 0, x = 0; 
-		wxString s;
-
 		x = wxAtoi(WSS[0]);
 		row = (x + 2) / 5 - 1;
 
@@ -1180,6 +1202,30 @@ void Polar::loadPolar()
 				{
 					dlg->m_gridEdit->SetCellValue(row,col,s);
 					setValue(s,row,col++,true);
+				}
+			}
+		}
+		}
+
+		if ( mode == 2 ) // Format Expedition
+		{
+			WS = wxStringTokenize(str,_T(";,\t "));
+			x = wxAtoi(WS[0]);
+			col = (x + 1)/2 - 1;
+			for (i = 1; i < WS.GetCount(); i += 2 )
+			{
+				x = wxAtoi(WS[i]);
+				row = (x + 2) / 5 - 1;
+				s = WS[i+1];
+				if(col > 19) break;
+				if(s == _T("0") || s == _T("0.00") || s == _T("0.0") || s == _T("0.000")) 
+				{
+					continue;
+				}
+				if(col < 21)
+				{
+					dlg->m_gridEdit->SetCellValue(row,col,s);
+					setValue(s,row,col,true);
 				}
 			}
 		}
