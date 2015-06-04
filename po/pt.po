@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-03 14:01-0500\n"
-"PO-Revision-Date: 2015-05-03 15:02-0400\n"
+"PO-Revision-Date: 2015-05-23 05:02-0400\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -23,7 +23,7 @@ msgstr "Polar"
 
 #: src/polar_pi.cpp:188
 msgid "Polar PlugIn for OpenCPN"
-msgstr "Extensão Polar para OpenCPN"
+msgstr "Extensão Polar para OpenCPN\n"
 
 #: src/polar_pi.cpp:194
 msgid "Polar PlugIn for OpenCPN\n"
@@ -31,7 +31,7 @@ msgstr "Extensão Polar para OpenCPN\n"
 
 #: src/polar_pi.cpp:221
 msgid "Polar Preferences"
-msgstr "Preferências Polar"
+msgstr "Preferências Polares"
 
 #: src/polar_pi.cpp:234
 msgid "Show Polar icon"
@@ -47,7 +47,7 @@ msgstr "Ma"
 
 #: src/Options.cpp:52
 msgid "Tr"
-msgstr "Tr"
+msgstr "TR"
 
 #: src/Options.cpp:53
 msgid "Ge1"
@@ -99,11 +99,11 @@ msgstr "?"
 
 #: src/Options.cpp:66
 msgid "Main"
-msgstr "Grande"
+msgstr "Principal"
 
 #: src/Options.cpp:67
 msgid "Try"
-msgstr "Carangueja"
+msgstr "Tentar"
 
 #: src/Options.cpp:68
 msgid "Genoa 1"
@@ -150,8 +150,10 @@ msgid "Spinnacker"
 msgstr "Spinnacker"
 
 #: src/Options.cpp:79
-msgid "You can change the abbreviations and the names of the sails\nin Options/Miscellaneous/Sails(Logbook)"
-msgstr "Pode mudar os nomes e abreviaturas das velas\nem Opções/Diversos/Velas(Diário de bordo)"
+msgid "You can change the abbreviations and the names of the sails\n"
+"in Options/Miscellaneous/Sails(Logbook)"
+msgstr "Pode mudar os nomes e abreviaturas das velas\n"
+"em Opções/Diversos/Velas(Diário de bordo)"
 
 #: src/Options.cpp:143
 msgid "'"
@@ -374,8 +376,14 @@ msgid "Range from maximum speed to minus"
 msgstr "Intervalo de velocidade máxima a mínima"
 
 #: src/Polar.cpp:1327
-msgid "Example:\nMax-Speed = 2,5 kts\nSelected 10 % = 0,25 kts\nRange from 2,25 to 2,5 kts"
-msgstr "Exemplo:\nVelocidade máxima = 2,5 nós\nSeleccionado 10 % = 0,25 nós\nIntervalo de 2,25 a 2,5 nós"
+msgid "Example:\n"
+"Max-Speed = 2,5 kts\n"
+"Selected 10 % = 0,25 kts\n"
+"Range from 2,25 to 2,5 kts"
+msgstr "Exemplo:\n"
+"Velocidade máxima = 2,5 nós\n"
+"Seleccionado 10 % = 0,25 nós\n"
+"Intervalo de 2,25 a 2,5 nós"
 
 #: src/Polar.cpp:1344
 msgid "Range"
@@ -427,8 +435,12 @@ msgid "Record "
 msgstr "Gravar "
 
 #: src/PolarDialog.cpp:167
-msgid "The plugin logbookkonni isn't installed\n\nIt's needed to collect wind/speed-data from all available logbooks\n\nThe create-button is hidden and the mode isn't useable"
-msgstr "A extensão diário de bordo konni não está instalada\n\nÉE necessária para recolher dados de velocidade do vento dos diários de bordo disponíveis\n\nO butão criar está escondido e o modo invisível"
+msgid "The plugin logbookkonni isn't installed\n\n"
+"It's needed to collect wind/speed-data from all available logbooks\n\n"
+"The create-button is hidden and the mode isn't useable"
+msgstr "A extensão diário de bordo konni não está instalada\n\n"
+"ÉE necessária para recolher dados de velocidade do vento dos diários de bordo disponíveis\n\n"
+"O butão criar está escondido e o modo invisível"
 
 #: src/PolarGui.h:99
 msgid "Polar Diagram"
@@ -499,8 +511,10 @@ msgid "GPS"
 msgstr "GPS"
 
 #: src/PolarGui.cpp:108
-msgid "Speedo uses column STW\nGPS uses column SOG"
-msgstr "Speedo usa a coluna STW\nGPS ua a coluna SOG"
+msgid "Speedo uses column STW\n"
+"GPS uses column SOG"
+msgstr "Speedo usa a coluna STW\n"
+"GPS ua a coluna SOG"
 
 #: src/PolarGui.cpp:112
 msgid "Current <"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-03 14:01-0500\n"
-"PO-Revision-Date: 2015-05-03 15:02-0400\n"
+"PO-Revision-Date: 2015-06-02 20:34-0400\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Estonian\n"
 "Language: et_EE\n"
@@ -19,15 +19,15 @@ msgstr ""
 #: src/polar_pi.cpp:120 src/polar_pi.cpp:182 src/polar_pi.cpp:208
 #: src/polar_pi.cpp:230 src/polar_pi.cpp:259
 msgid "Polar"
-msgstr "Polaar"
+msgstr "Polar"
 
 #: src/polar_pi.cpp:188
 msgid "Polar PlugIn for OpenCPN"
-msgstr "Polar-plugIn OpenCPN'i jaoks"
+msgstr "Polar-plugin OpenCPN'i jaoks"
 
 #: src/polar_pi.cpp:194
 msgid "Polar PlugIn for OpenCPN\n"
-msgstr "Polar-plugIn OpenCPN'i jaoks\n"
+msgstr "Polar-plugin OpenCPN'i jaoks\n"
 
 #: src/polar_pi.cpp:221
 msgid "Polar Preferences"
@@ -150,8 +150,10 @@ msgid "Spinnacker"
 msgstr "Spinnaker"
 
 #: src/Options.cpp:79
-msgid "You can change the abbreviations and the names of the sails\nin Options/Miscellaneous/Sails(Logbook)"
-msgstr "Sa võid muuta purjete lühendeid ja nimesid\n asukohas Valikud/Erinevad/Purjed(Logiraamat)"
+msgid "You can change the abbreviations and the names of the sails\n"
+"in Options/Miscellaneous/Sails(Logbook)"
+msgstr "Sa võid muuta purjete lühendeid ja nimesid\n"
+" asukohas Valikud/Erinevad/Purjed(Logiraamat)"
 
 #: src/Options.cpp:143
 msgid "'"
@@ -355,11 +357,11 @@ msgstr "Vali Polar-fail"
 
 #: src/Polar.cpp:1140
 msgid "Cannot load this file"
-msgstr ""
+msgstr "Ei suuda faili laadida"
 
 #: src/Polar.cpp:1146
 msgid "Format in this file not recognised"
-msgstr ""
+msgstr "Selles failis olev formaat ei ole tuvastatud"
 
 #: src/Polar.cpp:1313
 msgid "Use Max-Speed only"
@@ -374,8 +376,14 @@ msgid "Range from maximum speed to minus"
 msgstr "Ulatus max kiirusest kuni miinus"
 
 #: src/Polar.cpp:1327
-msgid "Example:\nMax-Speed = 2,5 kts\nSelected 10 % = 0,25 kts\nRange from 2,25 to 2,5 kts"
-msgstr "Näide:\nmax-kiirus = 2,5 kts\nValitud 10% = 0,25 kts\nUlatus 2,25 2,5 kts"
+msgid "Example:\n"
+"Max-Speed = 2,5 kts\n"
+"Selected 10 % = 0,25 kts\n"
+"Range from 2,25 to 2,5 kts"
+msgstr "Näide:\n"
+"max-kiirus = 2,5 kts\n"
+"Valitud 10% = 0,25 kts\n"
+"Ulatus 2,25 2,5 kts"
 
 #: src/Polar.cpp:1344
 msgid "Range"
@@ -427,8 +435,12 @@ msgid "Record "
 msgstr "Lindista "
 
 #: src/PolarDialog.cpp:167
-msgid "The plugin logbookkonni isn't installed\n\nIt's needed to collect wind/speed-data from all available logbooks\n\nThe create-button is hidden and the mode isn't useable"
-msgstr "Logbookkonni-plugin ei ole paigaldatud\n\nsee on vajalik tuule/kiiruse andmete kogumiseks kõigist saadaval logiraamatutest\n\nLoomis-nupp on peidetud ja moodus ei ole kasutatav"
+msgid "The plugin logbookkonni isn't installed\n\n"
+"It's needed to collect wind/speed-data from all available logbooks\n\n"
+"The create-button is hidden and the mode isn't useable"
+msgstr "Logbookkonni-plugin ei ole paigaldatud\n\n"
+"See on vajalik tuule/kiiruse andmete kogumiseks kõigist saadaval logiraamatutest\n\n"
+"Loomis-nupp on peidetud ja moodus ei ole kasutatav"
 
 #: src/PolarGui.h:99
 msgid "Polar Diagram"
@@ -484,7 +496,7 @@ msgstr "kraadi:"
 
 #: src/PolarGui.cpp:83
 msgid "Calculate speed-bullets for x degrees "
-msgstr "Arvuta kiiruse-kuule x-kraadi jaoks "
+msgstr "Arvuta kiiruse-punktid x-kraadi jaoks "
 
 #: src/PolarGui.cpp:100
 msgid "Source:"
@@ -499,8 +511,10 @@ msgid "GPS"
 msgstr "GPS"
 
 #: src/PolarGui.cpp:108
-msgid "Speedo uses column STW\nGPS uses column SOG"
-msgstr "Spido kasutab tulpa STW\nGPS kasutab tulpa SOG"
+msgid "Speedo uses column STW\n"
+"GPS uses column SOG"
+msgstr "Spido kasutab tulpa STW\n"
+"GPS kasutab tulpa SOG"
 
 #: src/PolarGui.cpp:112
 msgid "Current <"

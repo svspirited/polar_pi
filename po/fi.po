@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-03 14:01-0500\n"
-"PO-Revision-Date: 2015-05-03 15:02-0400\n"
+"PO-Revision-Date: 2015-06-02 20:34-0400\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -150,8 +150,10 @@ msgid "Spinnacker"
 msgstr "Spinnaakkeri"
 
 #: src/Options.cpp:79
-msgid "You can change the abbreviations and the names of the sails\nin Options/Miscellaneous/Sails(Logbook)"
-msgstr "Voit muuttaa lyhenteitä ja purjenimiä\nAsetukset/Sekalaiset/Purjeet(Lokikirja)"
+msgid "You can change the abbreviations and the names of the sails\n"
+"in Options/Miscellaneous/Sails(Logbook)"
+msgstr "Voit muuttaa lyhenteitä ja purjenimiä\n"
+"Asetukset/Sekalaiset/Purjeet(Lokikirja)"
 
 #: src/Options.cpp:143
 msgid "'"
@@ -355,11 +357,11 @@ msgstr "Valitse Polar tiedosto"
 
 #: src/Polar.cpp:1140
 msgid "Cannot load this file"
-msgstr ""
+msgstr "Tätä tiedostoa ei voi ladata"
 
 #: src/Polar.cpp:1146
 msgid "Format in this file not recognised"
-msgstr ""
+msgstr "Tämän tiedoston muotoa ei ole tunnistettu"
 
 #: src/Polar.cpp:1313
 msgid "Use Max-Speed only"
@@ -374,8 +376,14 @@ msgid "Range from maximum speed to minus"
 msgstr "Alue on maksiminopeudesta miinukseen"
 
 #: src/Polar.cpp:1327
-msgid "Example:\nMax-Speed = 2,5 kts\nSelected 10 % = 0,25 kts\nRange from 2,25 to 2,5 kts"
-msgstr "Esimerkki: \nMaksiminopeus = 2,5 kts\nValittu 10 % = 0,25 kts\nAlue 2,25:stä 2,5:een kts"
+msgid "Example:\n"
+"Max-Speed = 2,5 kts\n"
+"Selected 10 % = 0,25 kts\n"
+"Range from 2,25 to 2,5 kts"
+msgstr "Esimerkki: \n"
+"Maksiminopeus = 2,5 kts\n"
+"Valittu 10 % = 0,25 kts\n"
+"Alue 2,25:stä 2,5:een kts"
 
 #: src/Polar.cpp:1344
 msgid "Range"
@@ -427,8 +435,12 @@ msgid "Record "
 msgstr "Tallenna "
 
 #: src/PolarDialog.cpp:167
-msgid "The plugin logbookkonni isn't installed\n\nIt's needed to collect wind/speed-data from all available logbooks\n\nThe create-button is hidden and the mode isn't useable"
-msgstr "Lisäosa logbookkonni ei ole asennettuna\n\nse tarvitaan keräämään tuuli/nopeustietoja kaikista saatavilla olevista lokikirjoista\n\nLuo-painike on piilotettu ja tila ei ole käytettävissä"
+msgid "The plugin logbookkonni isn't installed\n\n"
+"It's needed to collect wind/speed-data from all available logbooks\n\n"
+"The create-button is hidden and the mode isn't useable"
+msgstr "Lisäosa logbookkonni ei ole asennettuna\n\n"
+"se tarvitaan keräämään tuuli/nopeustietoja kaikista saatavilla olevista lokikirjoista\n\n"
+"Luo-painike on piilotettu ja tila ei ole käytettävissä"
 
 #: src/PolarGui.h:99
 msgid "Polar Diagram"
@@ -484,7 +496,7 @@ msgstr "Asteet:"
 
 #: src/PolarGui.cpp:83
 msgid "Calculate speed-bullets for x degrees "
-msgstr "Laske nopeuspistetä x asteelle "
+msgstr "Laske nopeuspisteitä x asteelle "
 
 #: src/PolarGui.cpp:100
 msgid "Source:"
@@ -499,8 +511,10 @@ msgid "GPS"
 msgstr "GPS"
 
 #: src/PolarGui.cpp:108
-msgid "Speedo uses column STW\nGPS uses column SOG"
-msgstr "Nopeus käyttää sarakketta STW\nGPS käyttää sarakketta SOG"
+msgid "Speedo uses column STW\n"
+"GPS uses column SOG"
+msgstr "Nopeus käyttää sarakketta STW\n"
+"GPS käyttää sarakketta SOG"
 
 #: src/PolarGui.cpp:112
 msgid "Current <"
