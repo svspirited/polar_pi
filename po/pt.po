@@ -23,7 +23,7 @@ msgstr "Polar"
 
 #: src/polar_pi.cpp:188
 msgid "Polar PlugIn for OpenCPN"
-msgstr "Extensão Polar para OpenCPN\n"
+msgstr "Extensão Polar para OpenCPN"
 
 #: src/polar_pi.cpp:194
 msgid "Polar PlugIn for OpenCPN\n"
