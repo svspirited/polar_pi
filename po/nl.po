@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-03 14:01-0500\n"
-"PO-Revision-Date: 2015-05-03 15:02-0400\n"
+"PO-Revision-Date: 2015-06-02 20:34-0400\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -150,8 +150,10 @@ msgid "Spinnacker"
 msgstr "Spinnaker"
 
 #: src/Options.cpp:79
-msgid "You can change the abbreviations and the names of the sails\nin Options/Miscellaneous/Sails(Logbook)"
-msgstr "U kunt de afkortingen en de namen van de zeilen\naanpassen via Opties/Diversen/Zeilen (in Journaal)"
+msgid "You can change the abbreviations and the names of the sails\n"
+"in Options/Miscellaneous/Sails(Logbook)"
+msgstr "U kunt de afkortingen en de namen van de zeilen\n"
+"aanpassen via Opties/Diversen/Zeilen (in Journaal)"
 
 #: src/Options.cpp:143
 msgid "'"
@@ -355,11 +357,11 @@ msgstr "Selecteer een Polair-bestand"
 
 #: src/Polar.cpp:1140
 msgid "Cannot load this file"
-msgstr ""
+msgstr "Kan dit bestand niet laden"
 
 #: src/Polar.cpp:1146
 msgid "Format in this file not recognised"
-msgstr ""
+msgstr "Opmaak in dit bestand niet herkend"
 
 #: src/Polar.cpp:1313
 msgid "Use Max-Speed only"
@@ -374,8 +376,14 @@ msgid "Range from maximum speed to minus"
 msgstr "Bereik van maximumsnelheid verminderd met"
 
 #: src/Polar.cpp:1327
-msgid "Example:\nMax-Speed = 2,5 kts\nSelected 10 % = 0,25 kts\nRange from 2,25 to 2,5 kts"
-msgstr "Voorbeeld: \nMax-snelheid = 2,5 kts\nGeselecteerd 10% = 0,25 kts\nBereik van 2,25 tot 2,5 kts"
+msgid "Example:\n"
+"Max-Speed = 2,5 kts\n"
+"Selected 10 % = 0,25 kts\n"
+"Range from 2,25 to 2,5 kts"
+msgstr "Voorbeeld: \n"
+"Max-snelheid = 2,5 kts\n"
+"Geselecteerd 10% = 0,25 kts\n"
+"Bereik van 2,25 tot 2,5 kts"
 
 #: src/Polar.cpp:1344
 msgid "Range"
@@ -427,8 +435,12 @@ msgid "Record "
 msgstr "Opnemen "
 
 #: src/PolarDialog.cpp:167
-msgid "The plugin logbookkonni isn't installed\n\nIt's needed to collect wind/speed-data from all available logbooks\n\nThe create-button is hidden and the mode isn't useable"
-msgstr "De plugin Journal is niet geinstalleerd\n\nHet is nodig om wind/snelheid-gegevens te verzamelen van alle beschikbare journaals\n\nThe Aanmaken-knop is verborgen en de modus is niet bruikbaar"
+msgid "The plugin logbookkonni isn't installed\n\n"
+"It's needed to collect wind/speed-data from all available logbooks\n\n"
+"The create-button is hidden and the mode isn't useable"
+msgstr "De plugin Journal is niet geinstalleerd\n\n"
+"Het is nodig om wind/snelheid-gegevens te verzamelen van alle beschikbare journaals\n\n"
+"The Aanmaken-knop is verborgen en de modus is niet bruikbaar"
 
 #: src/PolarGui.h:99
 msgid "Polar Diagram"
@@ -499,8 +511,10 @@ msgid "GPS"
 msgstr "GPS"
 
 #: src/PolarGui.cpp:108
-msgid "Speedo uses column STW\nGPS uses column SOG"
-msgstr "Speedo gebruik kolom STW\nGPS gebruikt kolom SOG"
+msgid "Speedo uses column STW\n"
+"GPS uses column SOG"
+msgstr "Speedo gebruik kolom STW\n"
+"GPS gebruikt kolom SOG"
 
 #: src/PolarGui.cpp:112
 msgid "Current <"
