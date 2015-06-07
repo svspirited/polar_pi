@@ -79,6 +79,8 @@ Polar::Polar(PolarDialog* parent)
 
 	filterSails = false;
 
+	wxString s = wxFileName::GetPathSeparator();
+
 	wxStandardPathsBase& std_path = wxStandardPathsBase::Get();
 #ifdef __WXMSW__
 	wxString stdPath  = std_path.GetConfigDir();
@@ -87,13 +89,11 @@ Polar::Polar(PolarDialog* parent)
 	wxString stdPath  = std_path.GetUserDataDir();
 #endif
 #ifdef __WXOSX__
-	wxString stdPath  = std_path.GetUserConfigDir();   // should be ~/Library/Preferences	
+	wxString stdPath  = std_path.GetUserConfigDir();   // should be ~/Library/Preferences
+	stdPath += s + _T("opencpn");
 #endif
 
-	wxString basePath = stdPath   + wxFileName::GetPathSeparator();
-	basePath += _T("plugins") + wxString(wxFileName::GetPathSeparator());
-	basePath += _T("logbook") + wxString(wxFileName::GetPathSeparator());
-	basePath += _T("data") + wxString(wxFileName::GetPathSeparator());
+	wxString basePath = stdPath + s + _T("plugins") + s + _T("logbook") + s + _T("data") + s;
 	logbookDataPath  = basePath;
 
 	reset();
