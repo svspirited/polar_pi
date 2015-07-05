@@ -1033,7 +1033,8 @@ void Polar::save()
 				polarFile << _T("0\n");
 				continue;
 			}
-			polarFile << 5+(dir*5) << _T(",");
+			tempstring << 5+(dir*5) << _T(",");
+			count = 0;
 			for(int sp = 0; sp < 20; sp++)
 			{
 				data = -1;
@@ -1049,14 +1050,21 @@ void Polar::save()
 					break;
 				}
 				if(sp == 0)
-					polarFile << _T("0,");
+					tempstring << _T("0,");
 				if(save[sp].count[dir] > 0 && data >= 0.0)
-					polarFile << wxString::Format(_T("%.1f,"),data);
+					tempstring << wxString::Format(_T("%.1f,"),data);
 				else
-					polarFile << _T(",");
+					tempstring << _T(",");
 
+				if( data > 0)
+					count++;
 			}
-			polarFile << _T("\n");
+			tempstring << _T("\n");
+
+			if (count > 1)
+				polarFile << tempstring;
+
+			tempstring = wxEmptyString;
 		}
 	}
 	else // CSV Format
