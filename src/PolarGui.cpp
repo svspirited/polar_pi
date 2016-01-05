@@ -29,7 +29,7 @@ PolarDlg::PolarDlg( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText11->Wrap( -1 );
 	bSizerPolar->Add( m_staticText11, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
-	wxString m_choiceModeChoices[] = { _("Data from Logbooks"), _("Data from NMEA"), _("Data from File"), _("Edit manual") };
+	wxString m_choiceModeChoices[] = { _("Data from Logbooks"), _("Data from NMEA"), _("Data from VDR File"), _("Edit manual") };
 	int m_choiceModeNChoices = sizeof( m_choiceModeChoices ) / sizeof( wxString );
 	m_choiceMode = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceModeNChoices, m_choiceModeChoices, 0 );
 	m_choiceMode->SetSelection( 0 );
