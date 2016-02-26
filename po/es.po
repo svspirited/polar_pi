@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-03 14:01-0500\n"
-"PO-Revision-Date: 2015-05-03 15:02-0400\n"
+"PO-Revision-Date: 2016-02-18 16:08-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -150,8 +150,10 @@ msgid "Spinnacker"
 msgstr "Spinnaker"
 
 #: src/Options.cpp:79
-msgid "You can change the abbreviations and the names of the sails\nin Options/Miscellaneous/Sails(Logbook)"
-msgstr "Puede cambiar las abreviaturas y los nombres de las velas\n en Opciones/Misceláneas/Velas(Bitácora)"
+msgid "You can change the abbreviations and the names of the sails\n"
+"in Options/Miscellaneous/Sails(Logbook)"
+msgstr "Puede cambiar las abreviaturas y los nombres de las velas\n"
+" en Opciones/Misceláneas/Velas(Bitácora)"
 
 #: src/Options.cpp:143
 msgid "'"
@@ -355,11 +357,11 @@ msgstr "Seleccionar un archivo Polar"
 
 #: src/Polar.cpp:1140
 msgid "Cannot load this file"
-msgstr ""
+msgstr "No se puede cargar este archvo"
 
 #: src/Polar.cpp:1146
 msgid "Format in this file not recognised"
-msgstr ""
+msgstr "Formato de archivo no reconocido"
 
 #: src/Polar.cpp:1313
 msgid "Use Max-Speed only"
@@ -374,8 +376,14 @@ msgid "Range from maximum speed to minus"
 msgstr "Ordenar de velocidad máxima a mínima"
 
 #: src/Polar.cpp:1327
-msgid "Example:\nMax-Speed = 2,5 kts\nSelected 10 % = 0,25 kts\nRange from 2,25 to 2,5 kts"
-msgstr "Ejemplo:\nVelocidad-Máxima = 2,5 kts\nSeleccionado 10% = 0,25 kts\nRango de 2,25 a 2,5 kts"
+msgid "Example:\n"
+"Max-Speed = 2,5 kts\n"
+"Selected 10 % = 0,25 kts\n"
+"Range from 2,25 to 2,5 kts"
+msgstr "Ejemplo:\n"
+"Velocidad-Máxima = 2,5 kts\n"
+"Seleccionado 10% = 0,25 kts\n"
+"Rango de 2,25 a 2,5 kts"
 
 #: src/Polar.cpp:1344
 msgid "Range"
@@ -427,8 +435,12 @@ msgid "Record "
 msgstr "Grabar "
 
 #: src/PolarDialog.cpp:167
-msgid "The plugin logbookkonni isn't installed\n\nIt's needed to collect wind/speed-data from all available logbooks\n\nThe create-button is hidden and the mode isn't useable"
-msgstr "El plugin logbookkonni no está instalado\n\nEs necesario para recopilar datos de la velocidad del viento de todos los logbooks disponibles \n\nEl botón Crear está escondido y el modo no es utilizable"
+msgid "The plugin logbookkonni isn't installed\n\n"
+"It's needed to collect wind/speed-data from all available logbooks\n\n"
+"The create-button is hidden and the mode isn't useable"
+msgstr "El plugin logbookkonni no está instalado\n\n"
+"Es necesario para recopilar datos de la velocidad del viento de todos los logbooks disponibles \n\n"
+"El botón Crear está escondido y el modo no es utilizable"
 
 #: src/PolarGui.h:99
 msgid "Polar Diagram"
@@ -499,8 +511,10 @@ msgid "GPS"
 msgstr "GPS"
 
 #: src/PolarGui.cpp:108
-msgid "Speedo uses column STW\nGPS uses column SOG"
-msgstr "El velocímetro utiliza columnas STW\nGPS utiliza columna SOG"
+msgid "Speedo uses column STW\n"
+"GPS uses column SOG"
+msgstr "El velocímetro utiliza columnas STW\n"
+"GPS utiliza columna SOG"
 
 #: src/PolarGui.cpp:112
 msgid "Current <"
